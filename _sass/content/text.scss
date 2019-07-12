@@ -1,0 +1,69 @@
+@mixin font-heading {
+    font-family: "Roboto Slab", "Times New Roman", Times, serif;
+    font-weight: 400;
+}
+
+@mixin font-body {
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+input,
+button {
+    margin: 0;
+    padding: 0;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+@include font-body;
+}
+
+body {
+    @include font-body;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include font-heading;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.text-ruled {
+    position: relative;
+
+    width: 100%;
+    margin: $padding-small 0;
+
+    text-align: center;
+    text-transform: lowercase;
+
+    color: $text-color-detail;
+    border-bottom: $border-width solid $border-color;
+
+    font-style: italic;
+    line-height: 0;
+
+    span {
+        padding: 0 $padding-small;
+
+        background-color: $foreground-color;
+    }
+}

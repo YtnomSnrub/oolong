@@ -2,9 +2,31 @@
 
 // Text
 $text-color: rgba(0, 0, 0, 0.9) !default;
+$text-color-detail: rgba(0, 0, 0, 0.4) !default;
+
+// Color
+$background-color: #efefef !default;
+$foreground-color: #ffffff !default;
+$accent-color: #3d49b4 !default;
+$accent-color-light: #5460cc !default;
+$accent-color-dark: #2c3692 !default;
+
+// Layout
+$padding-large: 2.4rem !default;
+$padding-medium: 1.6rem !default;
+$padding-small: 0.8rem !default;
+$padding-gap: 0.2rem !default;
+// Border
+$border-width: 1px !default;
+$border-radius: 0.5rem !default;
+$border-color: rgba(0, 0, 0, 0.25) !default;
+
+// Shadows
+$shadow-panel: 0 2px 12px rgba(0, 0, 0, 0.4) !default;
 
 // Import partials.
 @import
-  "content/layout",
-  "content/header"
+    "content/text",
+    "content/layout",
+    "content/input"
 ;

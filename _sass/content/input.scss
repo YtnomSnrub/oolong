@@ -1,0 +1,43 @@
+input,
+button {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: $padding-small;
+
+    border: none;
+    border-radius: $border-radius;
+    outline: none;
+    background-color: $foreground-color;
+
+    font-size: 0.9rem;
+}
+
+input {
+    transition: border-color 0.1s ease, color 0.1s ease;
+
+    border: $border-width solid $border-color;
+
+    &:focus {
+        border-color: $accent-color;
+    }
+
+    &::placeholder {
+        color: $text-color-detail;
+
+        font-style: italic;
+    }
+}
+
+button {
+    cursor: pointer;
+    transition: background-color 0.1s ease, color 0.1s ease;
+
+    color: $accent-color;
+    border: $border-width solid $accent-color;
+
+    &:hover {
+        color: $foreground-color;
+        background-color: $accent-color;
+    }
+}

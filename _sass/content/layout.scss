@@ -1,8 +1,51 @@
-.site-header {
-    h1 {
-        color: $text-color;
-        text-shadow: 4px 4px 0 $accent-color;
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
-        font-size: 5rem;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    background-color: $background-color;
+
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 36rem) {
+        justify-content: start;
     }
+}
+
+.page-content {
+    position: relative;
+
+    overflow-y: auto;
+
+    width: 32rem;
+    max-width: 100vw;
+    max-height: 100vh;
+
+    border: none;
+    border-radius: $border-radius;
+    background-color: $foreground-color;
+    box-shadow: $shadow-panel;
+
+    @media screen and (max-width: 36rem) {
+        width: 100vw;
+
+        border-radius: 0;
+    }
+}
+
+.page-header {
+    padding: $padding-medium $padding-large;
+
+    color: $foreground-color;
+    background: linear-gradient(45deg, $accent-color-dark, $accent-color, $accent-color-light);
+}
+
+.page-content-inner {
+    padding: $padding-medium $padding-large;
 }
