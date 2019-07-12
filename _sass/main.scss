@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+// Text
+$text-color: rgba(0, 0, 0, 0.9) !default;
+
+// Import partials.
+@import
+  "content/layout",
+  "content/header"
+;
