@@ -30,7 +30,9 @@ button {
 }
 
 body {
-    @include font-body;
+    line-height: 1.5;
+
+@include font-body;
 }
 
 h1,
@@ -44,6 +46,32 @@ h6 {
 
 h1 {
     font-size: 2rem;
+}
+
+h2 {
+    color: $accent-color;
+
+    font-size: 1rem;
+}
+
+.text-highlight {
+    color: $accent-color;
+}
+
+.text-description {
+    color: $text-color-detail;
+
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.text-input-heading {
+    margin-bottom: $padding-gap;
+
+    color: $text-color-detail;
+
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 .text-ruled {
@@ -65,5 +93,28 @@ h1 {
         padding: 0 $padding-small;
 
         background-color: $foreground-color;
+    }
+}
+
+.text-generated-word {
+    transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+
+    opacity: 1;
+
+    font-size: 1.4rem;
+
+    &.text-generated-placeholder {
+        color: $text-color-detail;
+    }
+
+    &.text-generated-error {
+        color: $text-color-error;
+    }
+
+    &.hidden {
+        transition: opacity 0.1s ease-in, transform 0.1s ease-in;
+        transform: translateY(0.4rem);
+
+        opacity: 0;
     }
 }

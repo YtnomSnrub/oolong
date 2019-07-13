@@ -1,51 +1,107 @@
-body {
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-vertical {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+}
 
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-container {
+    padding: $padding-small 0;
+}
+
+.flex-padding-gap {
+    flex: $padding-gap;
+}
+
+.flex-padding-small {
+    flex: $padding-small;
+}
+
+body {
+    position: relative;
+
+    margin: $padding-medium;
     padding: 0;
 
     background-color: $background-color;
 
-    align-items: center;
-    justify-content: center;
-
-    @media screen and (max-width: 36rem) {
-        justify-content: start;
+    @media screen and (max-width: 48rem) {
+        margin: 0;
     }
 }
 
 .page-content {
-    position: relative;
+    overflow: hidden;
 
-    overflow-y: auto;
-
-    width: 32rem;
-    max-width: 100vw;
-    max-height: 100vh;
+    max-width: 48rem;
+    margin: auto;
 
     border: none;
     border-radius: $border-radius;
     background-color: $foreground-color;
     box-shadow: $shadow-panel;
-
-    @media screen and (max-width: 36rem) {
-        width: 100vw;
-
-        border-radius: 0;
-    }
 }
 
 .page-header {
     padding: $padding-medium $padding-large;
 
     color: $foreground-color;
-    background: linear-gradient(45deg, $accent-color-dark, $accent-color, $accent-color-light);
+    background: $accent-gradient;
 }
 
 .page-content-inner {
     padding: $padding-medium $padding-large;
+}
+
+table {
+    position: relative;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    table-layout: fixed;
+    border-spacing: 0;
+
+    border: none;
+    border-collapse: collapse;
+
+    tr {
+        margin: 0;
+        padding: 0;
+
+        &:nth-child(even) {
+            background-color: darken($foreground-color, 5%);
+        }
+
+        &:nth-child(odd) {
+            background-color: $foreground-color;
+        }
+
+        &.row-highlight {
+            color: $foreground-color;
+            background-color: $accent-color;
+        }
+    }
+
+    td,
+    th {
+        box-sizing: content-box;
+        width: 100%;
+        margin: 0;
+        padding: $padding-gap $padding-small;
+
+        border: $border-width solid $border-color;
+    }
 }

@@ -1,9 +1,16 @@
 input,
-button {
+button,
+textarea,
+input + label {
+    display: block;
+    overflow: hidden;
+
     box-sizing: border-box;
     width: 100%;
-    margin: 0.5rem 0;
+    margin: 0;
     padding: $padding-small;
+
+    resize: none;
 
     border: none;
     border-radius: $border-radius;
@@ -11,12 +18,51 @@ button {
     background-color: $foreground-color;
 
     font-size: 0.9rem;
+
+    &.input-connect-top {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    &.input-connect-noborder-top {
+        border-top: none;
+    }
+
+    &.input-connect-bottom {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    &.input-connect-noborder-bottom {
+        border-bottom: none;
+    }
+
+    &.input-connect-left {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    &.input-connect-noborder-left {
+        border-left: none;
+    }
+
+    &.input-connect-right {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &.input-connect-noborder-right {
+        border-right: none;
+    }
 }
 
-input {
+input,
+textarea {
     transition: border-color 0.1s ease, color 0.1s ease;
 
     border: $border-width solid $border-color;
+
+    flex: 3;
 
     &:focus {
         border-color: $accent-color;
@@ -29,15 +75,144 @@ input {
     }
 }
 
-button {
+input[type="file"],
+input[type="checkbox"] {
+    display: block;
+
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+
+    border: none;
+
+    flex: 0;
+}
+
+button:focus,
+input:focus + label.button {
+    color: $accent-color;
+    background-color: $accent-color-focus;
+}
+
+button,
+input + label.button {
     cursor: pointer;
     transition: background-color 0.1s ease, color 0.1s ease;
+    text-align: center;
 
     color: $accent-color;
     border: $border-width solid $accent-color;
 
+    flex: 1;
+
     &:hover {
         color: $foreground-color;
+        background-color: $accent-color-light;
+    }
+
+    &:active {
+        color: $foreground-color;
         background-color: $accent-color;
+    }
+}
+
+$checkbox-size: 1.5rem;
+$checkbox-checkmark-size-1: 0.4rem;
+$checkbox-checkmark-size-2: 0.8rem;
+$checkbox-checkmark-width: 2px;
+
+input[type="checkbox"] {
+    &:focus + label.checkbox {
+        &::before {
+            background-color: $accent-color-focus;
+        }
+    }
+
+    &:focus:checked + label.checkbox {
+        &::before {
+            background-color: $accent-color-light;
+        }
+    }
+
+    & + label.checkbox {
+        position: relative;
+
+        padding: $padding-small 0;
+        padding-left: $checkbox-size + $padding-small;
+
+        cursor: pointer;
+
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: $checkbox-size;
+            height: $checkbox-size;
+            margin: auto;
+
+            content: "";
+            transition: background-color 0.1s ease;
+
+            border: $border-width solid $accent-color;
+            border-radius: $border-radius;
+            background-color: $foreground-color;
+        }
+
+        &::after {
+            position: absolute;
+            left: 0.55rem;
+            top: 0.68rem;
+
+            width: $checkbox-checkmark-size-1;
+            height: $checkbox-checkmark-size-2;
+            margin: auto;
+
+            content: "";
+            transition: opacity 0.1s ease, transform 0.1s ease;
+            transform: rotate(45deg) scale(0.5);
+
+            opacity: 0;
+            border-right: $checkbox-checkmark-width solid $foreground-color;
+            border-bottom: $checkbox-checkmark-width solid $foreground-color;
+        }
+
+        &:hover {
+            &::before {
+                background-color: $accent-color-light;
+            }
+        }
+
+        &:active {
+            &::before {
+                background-color: $accent-color;
+            }
+        }
+    }
+
+    &:checked + label.checkbox {
+        &::before {
+            background-color: $accent-color;
+        }
+
+        &::after {
+            transform: rotate(45deg) scale(1);
+
+            opacity: 1;
+        }
+
+        &:hover {
+            &::before {
+                background-color: $accent-color-light;
+            }
+        }
+
+        &:active {
+            &::before {
+                background-color: $accent-color;
+            }
+        }
     }
 }

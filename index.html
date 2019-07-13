@@ -7,9 +7,79 @@ layout: default
 </div>
 
 <div class="page-content-inner">
-    <button>Upload File</button>
+    <h2>Load</h2>
+
+    <div class="flex-vertical flex-container">
+        <label for="loadorder" class="text-input-heading">Order</label>
+        <input type="number" name="loadorder" min="1" placeholder="Order" value="4" id="InputLoadOrder">
+
+        <div class="flex-padding-small"></div>
+        <p class="text-description">
+            Order determines how many previous values to look at when generating the next value.
+            High order will produce an output more similar to the input,
+            while low order will produce a more random result.
+        </p>
+    </div>
+
+    <div class="flex-vertical flex-container">
+        <label for="loadfile" class="text-input-heading">File</label>
+        <div class="flex-horizontal">
+            <input type="text" name="loadfiletext" placeholder="Choose a File" disabled="disabled"
+                class="input-connect-right input-connect-noborder-right" id="InputUploadFileText">
+            <input type="file" name="loadfile" id="InputUploadFile">
+            <label class="button input-connect-left" for="InputUploadFile">Load File</label>
+        </div>
+
+        <div class="flex-padding-small"></div>
+        <button id="ButtonLoadFile">Update from File</button>
+    </div>
 
     <div class="text-ruled"><span>or</span></div>
 
-    <input type="text" name="website" placeholder="Website URL" autocomplete="off">
+    <div class="flex-vertical flex-container">
+        <label for="loadtext" class="text-input-heading">Text</label>
+        <textarea type="text" name="loadtext" placeholder="Text" autocomplete="off" rows="4"
+            id="InputUploadText"></textarea>
+
+        <div class="flex-padding-small"></div>
+        <button class="" id="ButtonLoadText" class="input-connect-top">Update from Text</button>
+    </div>
+
+    <div class="flex-vertical flex-container">
+        <label for="TextCurrentData" class="text-input-heading">Current Source Data</label>
+        <p class="text-description" id="TextCurrentData">No source data loaded</p>
+    </div>
+
+    <h2>Options</h2>
+
+    <div class="flex-vertical flex-container">
+        <input type="checkbox" name="skipduplicate" id="OptionCheckboxSkipDuplicate" checked>
+        <label class="checkbox" for="OptionCheckboxSkipDuplicate">No Duplicates</label>
+        <p class="text-description">
+            Not allowing duplicates will skip over generations that also appear in the source data.
+            This means that each generated word or sentence will be unique, rather than a copy of something in the
+            source material.
+        </p>
+    </div>
+
+    <h2>Generate</h2>
+
+    <p class="text-generated-word text-generated-placeholder" id="TextGeneratedWord">Kochai</p>
+
+    <div class="flex-vertical flex-container">
+        <div class="flex-horizontal">
+            <button id="ButtonGenerateWord" class="input-connect-bottom input-connect-noborder-bottom">Generate</button>
+        </div>
+        <div class="flex-horizontal">
+            <button id="ButtonGenerateReset"
+                class="input-connect-top input-connect-right input-connect-noborder-right">Reset</button>
+            <button id="ButtonGenerateStep" class=" input-connect-top input-connect-left">Next Step</button>
+        </div>
+    </div>
+
+    <div class="flex-vertical flex-container">
+        <table class="table-key-values">
+            <tbody id="TableKeyValues"></tbody>
+        </table>
+    </div>
 </div>

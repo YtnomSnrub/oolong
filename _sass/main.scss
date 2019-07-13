@@ -3,6 +3,7 @@
 // Text
 $text-color: rgba(0, 0, 0, 0.9) !default;
 $text-color-detail: rgba(0, 0, 0, 0.4) !default;
+$text-color-error: rgba(255, 0, 0, 0.9) !default;
 
 // Color
 $background-color: #efefef !default;
@@ -10,11 +11,13 @@ $foreground-color: #ffffff !default;
 $accent-color: #3d49b4 !default;
 $accent-color-light: #5460cc !default;
 $accent-color-dark: #2c3692 !default;
+$accent-color-focus: #f2f4ff !default;
+$accent-gradient: linear-gradient(45deg, $accent-color-dark, $accent-color, $accent-color-light);
 
 // Layout
 $padding-large: 2.4rem !default;
 $padding-medium: 1.6rem !default;
-$padding-small: 0.8rem !default;
+$padding-small: 0.6rem !default;
 $padding-gap: 0.2rem !default;
 // Border
 $border-width: 1px !default;
