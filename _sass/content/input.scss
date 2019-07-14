@@ -1,7 +1,8 @@
 input,
 button,
 textarea,
-input + label {
+input + label,
+label.checkbox {
     display: block;
     overflow: hidden;
 
@@ -84,6 +85,7 @@ input[type="checkbox"] {
     margin: 0;
     padding: 0;
 
+    opacity: 0;
     border: none;
 
     flex: 0;
@@ -98,121 +100,125 @@ input:focus + label.button {
 button,
 input + label.button {
     cursor: pointer;
-    transition: background-color 0.1s ease, color 0.1s ease;
+    transition: background-color 0.1s ease, color 0.1s ease, opacity 0.1s ease;
     text-align: center;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
 
     color: $accent-color;
     border: $border-width solid $accent-color;
+    background-color: $foreground-color;
 
     flex: 1;
 
     &:hover {
         color: $foreground-color;
-        background-color: $accent-color-light;
+        background-color: $accent-color-hover;
     }
 
     &:active {
         color: $foreground-color;
-        background-color: $accent-color;
+        background-color: $accent-color-active;
+    }
+
+    &:disabled {
+        cursor: auto;
+
+        opacity: 0.5;
+        color: $accent-color;
+        background-color: $foreground-color;
     }
 }
 
 $checkbox-size: 1.5rem;
-$checkbox-checkmark-size-1: 0.4rem;
-$checkbox-checkmark-size-2: 0.8rem;
-$checkbox-checkmark-width: 2px;
 
-input[type="checkbox"] {
-    &:focus + label.checkbox {
-        &::before {
-            background-color: $accent-color-focus;
+label.checkbox {
+    position: relative;
+
+    padding-left: calc(#{$checkbox-size} + #{$padding-small});
+
+    cursor: pointer;
+
+    user-select: none;
+
+    svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: $checkbox-size;
+        height: $checkbox-size;
+        margin: auto;
+
+        transition: background-color 0.1s ease;
+
+        border: $border-width solid $accent-color;
+        border-radius: $border-radius;
+        background-color: $foreground-color;
+
+        polyline {
+            transition: stroke-dashoffset 0.12s ease-in-out, stroke 0.02s ease-in-out 0.1s;
+
+            fill: none;
+            stroke: transparent;
+            stroke-dasharray: 18px;
+            stroke-dashoffset: 18px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: $border-width;
         }
     }
 
-    &:focus:checked + label.checkbox {
-        &::before {
-            background-color: $accent-color-light;
+    &:hover,
+    &:focus {
+        svg {
+            background-color: $accent-color-hover;
         }
     }
 
-    & + label.checkbox {
-        position: relative;
+    &:active svg {
+        background-color: $accent-color-active;
+    }
 
-        padding: $padding-small 0;
-        padding-left: $checkbox-size + $padding-small;
-
-        cursor: pointer;
-
-        &::before {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-
-            width: $checkbox-size;
-            height: $checkbox-size;
-            margin: auto;
-
-            content: "";
-            transition: background-color 0.1s ease;
-
-            border: $border-width solid $accent-color;
-            border-radius: $border-radius;
-            background-color: $foreground-color;
-        }
-
-        &::after {
-            position: absolute;
-            left: 0.55rem;
-            top: 0.68rem;
-
-            width: $checkbox-checkmark-size-1;
-            height: $checkbox-checkmark-size-2;
-            margin: auto;
-
-            content: "";
-            transition: opacity 0.1s ease, transform 0.1s ease;
-            transform: rotate(45deg) scale(0.5);
-
-            opacity: 0;
-            border-right: $checkbox-checkmark-width solid $foreground-color;
-            border-bottom: $checkbox-checkmark-width solid $foreground-color;
-        }
-
-        &:hover {
-            &::before {
-                background-color: $accent-color-light;
-            }
-        }
-
-        &:active {
-            &::before {
-                background-color: $accent-color;
+    &:hover,
+    &:active {
+        input[type="checkbox"]:checked {
+            & + svg polyline {
+                stroke: $foreground-color;
             }
         }
     }
 
-    &:checked + label.checkbox {
-        &::before {
-            background-color: $accent-color;
-        }
+    input[type="checkbox"] {
+        &:checked {
+            & + svg {
+                polyline {
+                    transition: stroke-dashoffset 0.12s ease-in-out, stroke 0.02s ease-in-out;
 
-        &::after {
-            transform: rotate(45deg) scale(1);
+                    stroke: $accent-color;
+                    stroke-dashoffset: 0;
+                }
+            }
 
-            opacity: 1;
-        }
-
-        &:hover {
-            &::before {
-                background-color: $accent-color-light;
+            &:hover,
+            &:focus,
+            &:active {
+                & + svg {
+                    polyline {
+                        stroke: $foreground-color;
+                    }
+                }
             }
         }
 
-        &:active {
-            &::before {
-                background-color: $accent-color;
-            }
+        &:hover + svg,
+        &:focus + svg {
+            background-color: $accent-color-hover;
+        }
+
+        &:active + svg {
+            background-color: $accent-color-active;
         }
     }
 }

@@ -5,12 +5,20 @@
 
 <body>
 
-    <main class="page-content" aria-label="Content">
+    <main class="page" aria-label="Content">
+
+        <div class="page-content page-header">
+            <h1>Oolong</h1>
+        </div>
+
         {{ content }}
+
     </main>
 
     <script src="{{ '/assets/js/chain.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/kochai.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/chainBaker.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/chainGenerator.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/oolong.js' | relative_url }}"></script>
 
 </body>
 

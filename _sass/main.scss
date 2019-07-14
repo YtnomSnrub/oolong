@@ -3,16 +3,17 @@
 // Text
 $text-color: rgba(0, 0, 0, 0.9) !default;
 $text-color-detail: rgba(0, 0, 0, 0.4) !default;
-$text-color-error: rgba(255, 0, 0, 0.9) !default;
+$text-color-error: rgba(216, 27, 27, 0.9) !default;
+$text-color-success: rgba(39, 148, 17, 0.9) !default;
 
 // Color
 $background-color: #efefef !default;
 $foreground-color: #ffffff !default;
-$accent-color: #3d49b4 !default;
-$accent-color-light: #5460cc !default;
-$accent-color-dark: #2c3692 !default;
-$accent-color-focus: #f2f4ff !default;
-$accent-gradient: linear-gradient(45deg, $accent-color-dark, $accent-color, $accent-color-light);
+$accent-color: #2282d1 !default;
+$accent-color-hover: lighten($accent-color, 10%) !default;
+$accent-color-active: lighten($accent-color, 5%) !default;
+$accent-color-focus: lighten($accent-color, 45%) !default;
+$accent-gradient: linear-gradient(45deg, darken($accent-color, 10%), $accent-color, lighten($accent-color, 10%));
 
 // Layout
 $padding-large: 2.4rem !default;

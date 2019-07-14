@@ -13,11 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Kochai
+title: Oolong
 email: jalaunder@gmail.com
 description: >- # this means to ignore newlines until next config key
   A random word build using markov chains on a custom input.
-baseurl: "/kochai" # the subpath of your site
+baseurl: "/oolong" # the subpath of your site
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 author: YtnomSnrub
 

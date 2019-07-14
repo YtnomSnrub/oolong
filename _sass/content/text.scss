@@ -1,11 +1,13 @@
 @mixin font-heading {
-    font-family: "Roboto Slab", "Times New Roman", Times, serif;
-    font-weight: 400;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+@mixin font-subheading {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 @mixin font-body {
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 400;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 p,
@@ -25,6 +27,7 @@ button {
     text-decoration: none;
 
     font-size: 1rem;
+    font-weight: 400;
 
 @include font-body;
 }
@@ -41,21 +44,69 @@ h3,
 h4,
 h5,
 h6 {
-    @include font-heading;
+    margin-bottom: $padding-gap;
 }
 
 h1 {
     font-size: 2rem;
+
+@include font-heading;
 }
 
 h2 {
     color: $accent-color;
 
+    font-size: 1.2rem;
+
+@include font-subheading;
+}
+
+h3 {
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+
     font-size: 1rem;
+    font-weight: 700;
+
+@include font-subheading;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+.heading-description {
+    margin-bottom: $padding-gap;
+
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+
+    color: $text-color-detail;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+@include font-subheading;
+}
+
+p {
+    margin-bottom: 0.2rem;
 }
 
 .text-highlight {
     color: $accent-color;
+}
+
+.text-placeholder {
+    color: $text-color-detail;
+}
+
+.text-error {
+    color: $text-color-error;
+}
+
+.text-success {
+    color: $text-color-success;
 }
 
 .text-description {
@@ -65,13 +116,19 @@ h2 {
     font-style: italic;
 }
 
-.text-input-heading {
-    margin-bottom: $padding-gap;
-
-    color: $text-color-detail;
-
+.text-status {
     font-size: 0.8rem;
     font-weight: 700;
+}
+
+.text-transition {
+    transition: color 0.1s ease, opacity 0.1s ease;
+
+    opacity: 1;
+
+    &.hidden {
+        opacity: 0;
+    }
 }
 
 .text-ruled {
@@ -90,6 +147,9 @@ h2 {
     line-height: 0;
 
     span {
+        position: relative;
+        top: -0.04rem;
+
         padding: 0 $padding-small;
 
         background-color: $foreground-color;
@@ -102,14 +162,6 @@ h2 {
     opacity: 1;
 
     font-size: 1.4rem;
-
-    &.text-generated-placeholder {
-        color: $text-color-detail;
-    }
-
-    &.text-generated-error {
-        color: $text-color-error;
-    }
 
     &.hidden {
         transition: opacity 0.1s ease-in, transform 0.1s ease-in;

@@ -1,2 +1,2 @@
-# Kochai
- A word builder using markov chains.
+# Oolong
+A word builder using markov chains.

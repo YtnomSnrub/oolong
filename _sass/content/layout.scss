@@ -18,36 +18,61 @@
 }
 
 .flex-padding-gap {
-    flex: $padding-gap;
+    flex: $padding-gap 0;
 }
 
 .flex-padding-small {
-    flex: $padding-small;
+    flex: $padding-small 0;
 }
 
 body {
     position: relative;
 
-    margin: $padding-medium;
-    padding: 0;
+    margin: 0;
+    padding: 0 $padding-medium;
 
     background-color: $background-color;
 
     @media screen and (max-width: 48rem) {
-        margin: 0;
+        padding: 0;
+    }
+}
+
+.page {
+    position: relative;
+
+    display: table;
+    overflow: hidden;
+
+    min-height: 100vh;
+    margin: auto;
+    padding: 0;
+
+    border: none;
+    background-color: $foreground-color;
+    box-shadow: $shadow-panel;
+
+    @media screen and (max-width: 48rem) {
+        display: block;
     }
 }
 
 .page-content {
-    overflow: hidden;
+    display: table-cell;
 
-    max-width: 48rem;
-    margin: auto;
+    vertical-align: top;
 
-    border: none;
-    border-radius: $border-radius;
-    background-color: $foreground-color;
-    box-shadow: $shadow-panel;
+    @media screen and (max-width: 64rem) {
+        display: block;
+
+        min-width: 100%;
+    }
+}
+
+.page-content-inner {
+    position: relative;
+
+    padding: $padding-medium $padding-large;
 }
 
 .page-header {
@@ -57,14 +82,54 @@ body {
     background: $accent-gradient;
 }
 
-.page-content-inner {
-    padding: $padding-medium $padding-large;
+.page-content-primary {
+    max-width: 36rem;
+}
+
+.page-content-secondary {
+    position: relative;
+
+    max-width: 20rem;
+
+    transition: max-width 0.4s ease-in-out, border-left 0.4s ease-in-out, opacity 0.1s ease-in-out 0.25s;
+    white-space: nowrap;
+
+    opacity: 1;
+    border-left: $padding-medium solid transparent;
+
+    @media screen and (max-width: 64rem) {
+        max-width: 36rem;
+        height: 64rem;
+
+        transition: none;
+
+        border-left: 0 solid transparent;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &.hidden {
+        max-width: 0;
+
+        transition: max-width 0.4s ease-in-out, border-left 0.4s ease-in-out, opacity 0.1s ease-in-out;
+
+        opacity: 0;
+        border-left-width: 0;
+    }
+}
+
+.container-scroll {
+    overflow-y: auto;
+
+    flex-shrink: 1;
 }
 
 table {
     position: relative;
 
-    overflow: hidden;
+    overflow: auto;
 
     box-sizing: border-box;
     width: 100%;
@@ -73,6 +138,8 @@ table {
 
     table-layout: fixed;
     border-spacing: 0;
+
+    vertical-align: top;
 
     border: none;
     border-collapse: collapse;

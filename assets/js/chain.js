@@ -6,9 +6,9 @@ const chain = {
      * Create a new, empty chain
      * @param {Number} order The order of the markov chain
      */
-    createChainSet(order) {
+    createChainSet: function (order) {
         // Check order
-        if (!Number.isSafeInteger(order) || order < 1) {
+        if (!typeof order === "number" || order < 1) {
             throw new Error("order must be an integer greater than zero");
         }
 
@@ -19,7 +19,7 @@ const chain = {
              * Adds symbols to the markov chain
              * @param {[]} symbols The symbols to add
              */
-            addSymbols(symbols) {
+            addSymbols: function (symbols) {
                 for (let i = 0; i <= symbols.length; ++i) {
                     let newChain = [];
                     // Add symbols
@@ -38,7 +38,7 @@ const chain = {
                 }
             },
 
-            bakeChain() {
+            bakeChain: function () {
                 let p = {};
                 // Create probabilities
                 this.chains.forEach(function (chain) {
@@ -58,96 +58,111 @@ const chain = {
                     p[key][value] += 1;
                 });
 
-                return {
-                    p: p,
+                return chain.loadBakedChain({ p: p, order: order });
+            }
+        }
+    },
 
-                    /**
-                     * Generate the next symbol, given a key
-                     * @param {[]} key 
-                     */
-                    generateNextSymbol(key) {
-                        // Pad start with start symbols
-                        while (key.length < order) {
-                            key.splice(0, 0, SYMBOL_START);
-                        }
+    loadBakedChain: function (bakedChain) {
+        if (bakedChain === null || bakedChain === undefined) {
+            throw Error("bakedChain cannot be null or undefined");
+        }
 
-                        // Trim key down to order length
-                        while (key.length > order) {
-                            key = key.slice(1);
-                        }
+        return {
+            p: bakedChain.p,
+            order: bakedChain.order,
 
-                        // Check p for key
-                        if (p[key] === undefined) {
-                            return SYMBOL_END;
-                        }
+            /**
+             * Get a key of length order, given an array of symbols
+             * @param {[]} symbols 
+             */
+            getKeyForSymbols: function (symbols, padStart) {
+                let orderKey = symbols.slice();
+                // Pad start with start symbols
+                if (padStart) {
+                    while (orderKey.length < this.order) {
+                        orderKey.splice(0, 0, SYMBOL_START);
+                    }
+                } else if (orderKey.length === 0) {
+                    orderKey.push(SYMBOL_START);
+                }
 
-                        let pKeys = Object.keys(p[key]);
-                        // Find total of values for key
-                        let valueTotal = 0;
-                        pKeys.forEach(function (value) {
-                            valueTotal += p[key][value];
-                        });
+                // Trim key down to order length
+                while (orderKey.length > this.order) {
+                    orderKey = orderKey.slice(1);
+                }
 
-                        // Generate a random value
-                        let randomValue = Math.random() * valueTotal;
-                        // Find the random value
-                        let runningTotal = 0;
-                        for (let i = 0; i < pKeys.length; ++i) {
-                            let value = pKeys[i];
-                            runningTotal += p[key][value];
-                            if (runningTotal >= randomValue) {
-                                return value;
-                            }
-                        }
+                return orderKey;
+            },
 
-                        // Return end if no key was found
-                        return SYMBOL_END;
-                    },
+            /**
+             * Generate the next symbol, given a key
+             * @param {[]} symbols
+             */
+            generateNextSymbol: function (symbols) {
+                let p = this.p;
+                let key = this.getKeyForSymbols(symbols, true);
+                // Check p for key
+                if (p[key] === undefined) {
+                    return SYMBOL_END;
+                }
 
-                    getPossibilitiesForKey(key) {
-                        // Pad start with start symbols
-                        while (key.length < order) {
-                            key.splice(0, 0, SYMBOL_START);
-                        }
+                let pKeys = Object.keys(p[key]);
+                // Find total of values for key
+                let valueTotal = 0;
+                pKeys.forEach(function (value) {
+                    valueTotal += p[key][value];
+                });
 
-                        // Trim key down to order length
-                        while (key.length > order) {
-                            key = key.slice(1);
-                        }
-
-                        // Check p for key
-                        if (p[key] === undefined) {
-                            return SYMBOL_END;
-                        }
-
-                        return p[key];
-                    },
-
-                    generateNewChain() {
-                        let chain = [];
-                        // Init key
-                        let key = [];
-
-                        // Generate new symbols
-                        while (true) {
-                            let value = this.generateNextSymbol(key);
-                            // Add the value to the key
-                            key.push(value);
-                            while (key.length > order) {
-                                key = key.slice(1);
-                            }
-
-                            // Add the value to the chain
-                            if (value === SYMBOL_END) {
-                                break;
-                            } else {
-                                chain.push(value);
-                            }
-                        }
-
-                        return chain;
+                // Generate a random value
+                let randomValue = Math.random() * valueTotal;
+                // Find the random value
+                let runningTotal = 0;
+                for (let i = 0; i < pKeys.length; ++i) {
+                    let value = pKeys[i];
+                    runningTotal += p[key][value];
+                    if (runningTotal >= randomValue) {
+                        return value;
                     }
                 }
+
+                // Return end if no key was found
+                return SYMBOL_END;
+            },
+
+            /**
+             * Get the possibilities for an array of symbols
+             * @param {[]} symbols 
+             */
+            getPossibilitiesForSymbols: function (symbols) {
+                let orderKey = this.getKeyForSymbols(symbols, true);
+                return this.p[orderKey];
+            },
+
+            generateNewChain: function () {
+                let chain = [];
+                // Init key
+                let key = [];
+
+                // Generate new symbols
+                while (true) {
+                    let value = this.generateNextSymbol(key);
+                    // Add the value to the key
+                    key.push(value);
+                    // Trim the key if it is longer than the order
+                    while (key.length > this.order) {
+                        key = key.slice(1);
+                    }
+
+                    // Add the value to the chain
+                    if (value === SYMBOL_END) {
+                        break;
+                    } else {
+                        chain.push(value);
+                    }
+                }
+
+                return chain;
             }
         }
     },
