@@ -7,4 +7,4 @@ _site
 .vscode/*
 
 # Data
-assets/data/raw/cities/worldcitiespop.csv
+assets/data/raw/**/*.csv
