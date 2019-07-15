@@ -23,3 +23,9 @@ author: YtnomSnrub
 
 # Build settings
 markdown: kramdown
+
+defaults:
+  - scope:
+      path: "assets/data/presets"
+    values:
+      preset: true

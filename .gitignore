@@ -1,3 +1,10 @@
+# Jekyll
 _site
 .sass-cache
 .jekyll-metadata
+
+# Visual Studio Code
+.vscode/*
+
+# Data
+assets/data/raw/cities/worldcitiespop.csv
