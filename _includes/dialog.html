@@ -1,0 +1,61 @@
+<div class="dialog" id="{{ include.id }}">
+    <div class="dialog-background" id="{{ include.id }}Background"></div>
+    <div class="dialog-content flex-vertical">
+        {%- if include.title -%}
+        <div class="page-header">
+            <h1>{{ include.title }}</h1>
+        </div>
+        {%- endif -%}
+
+        {{ include.content }}
+
+        {%- if include.close -%}
+        <div class="dialog-content-footer flex-horizontal">
+            <button id="{{ include.id }}ButtonClose">{{ include.close }}</button>
+        </div>
+        {%- endif -%}
+    </div>
+</div>
+
+<script>
+    // Setup dialog close
+    (function () {
+        // Dialog close function
+        let dialog = document.getElementById("{{ include.id }}");
+        if (dialog) {
+            dialog.closeDialog = function () {
+                if (dialog.classList.contains("visible")) {
+                    dialog.classList.remove("visible");
+                    setTimeout(function () {
+                        dialog.style.visibility = "hidden";
+                    }, 500);
+                } else {
+                    dialog.style.visibility = "hidden";
+                }
+            }
+
+            dialog.openDialog = function () {
+                dialog.style.visibility = "visible";
+                dialog.classList.add("visible");
+            }
+
+            // Start closed
+            if ("{{ include.open }}") {
+                dialog.openDialog();
+            } else {
+                dialog.closeDialog();
+            }
+
+            // Close on close button click
+            let dialogCloseButton = document.getElementById("{{ include.id }}ButtonClose");
+            if (dialogCloseButton) {
+                dialogCloseButton.addEventListener("click", dialog.closeDialog);
+                // Close on background click
+                let dialogBackground = document.getElementById("{{ include.id }}Background");
+                if (dialogBackground) {
+                    dialogBackground.addEventListener("click", dialog.closeDialog);
+                }
+            }
+        }
+    })();
+</script>

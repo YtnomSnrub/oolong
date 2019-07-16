@@ -4,21 +4,48 @@
 {%- include head.html -%}
 
 <body>
+    <script>
+        document.createElement('header');
+        document.createElement('section');
+        document.createElement('main');
+        document.createElement('article');
+        document.createElement('aside');
+        document.createElement('nav');
+        document.createElement('footer');
+    </script>
 
-    <main class="page" aria-label="Content">
+    <div class="page" id="PageWrapper">
+        <header class="page-content page-header">
+            <a href="/oolong/">
+                <h1>Oolong</h1>
+            </a>
+        </header>
 
-        <div class="page-content page-header">
-            <h1>Oolong</h1>
-        </div>
+        <main aria-label="Content">
+            {{ content }}
+        </main>
+    </div>
 
-        {{ content }}
+    <div aria-label="Content" id="PageError" style="display: none; padding: 24px;">
+        <h1>Oolong</h1>
+        <h2>Browser not Supported</h2>
+        <p>Your browser is not supported, please update to a newer browser to continue.</p>
+    </div>
 
-    </main>
-
-    <script src="{{ '/assets/js/chain.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/chainBaker.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/chainGenerator.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/oolong.js' | relative_url }}"></script>
+    <script>
+        try {
+            // Check browser support
+            eval("let x = 0;");
+            eval("const X = 0;");
+        } catch (ex) {
+            // Hide other content
+            var pageWrapper = document.getElementById("PageWrapper");
+            pageWrapper.style.display = "none";
+            // Show error content
+            var pageError = document.getElementById("PageError");
+            pageError.style.display = "block";
+        }
+    </script>
 
 </body>
 

@@ -8,13 +8,12 @@
     flex-direction: column;
 }
 
-.flex-center {
-    align-items: center;
-    justify-content: center;
-}
-
 .flex-container {
     padding: $padding-small 0;
+}
+
+.flex-fill {
+    flex: 1;
 }
 
 .flex-padding-gap {
@@ -33,16 +32,23 @@ body {
 
     background-color: $background-color;
 
-    @media screen and (max-width: 48rem) {
+    @media screen and (max-width: $page-breakpoint-full) {
         padding: 0;
     }
+}
+
+div,
+main,
+header {
+    display: block;
+
+    box-sizing: border-box;
 }
 
 .page {
     position: relative;
 
     display: table;
-    overflow: hidden;
 
     min-height: 100vh;
     margin: auto;
@@ -52,7 +58,7 @@ body {
     background-color: $foreground-color;
     box-shadow: $shadow-panel;
 
-    @media screen and (max-width: 48rem) {
+    @media screen and (max-width: $page-breakpoint-full) {
         display: block;
     }
 }
@@ -62,7 +68,7 @@ body {
 
     vertical-align: top;
 
-    @media screen and (max-width: 64rem) {
+    @media screen and (max-width: $page-breakpoint-horizontal) {
         display: block;
 
         min-width: 100%;
@@ -80,6 +86,29 @@ body {
 
     color: $foreground-color;
     background: $accent-gradient;
+    background-color: $accent-color;
+
+    a {
+        transition: letter-spacing 0.1s ease;
+        letter-spacing: 0;
+
+        color: $foreground-color;
+
+        &:hover,
+        &:focus {
+            letter-spacing: 0.2rem;
+        }
+
+        &:active {
+            letter-spacing: 0rem;
+        }
+    }
+
+    @media screen and (max-width: $page-breakpoint-horizontal) {
+        display: block;
+
+        min-width: 100%;
+    }
 }
 
 .page-content-primary {
@@ -87,7 +116,9 @@ body {
 }
 
 .page-content-secondary {
-    position: relative;
+    position: sticky;
+    top: 0;
+    bottom: 0;
 
     max-width: 20rem;
 
@@ -97,9 +128,8 @@ body {
     opacity: 1;
     border-left: $padding-medium solid transparent;
 
-    @media screen and (max-width: 64rem) {
+    @media screen and (max-width: $page-breakpoint-horizontal) {
         max-width: 36rem;
-        height: 64rem;
 
         transition: none;
 
@@ -129,8 +159,6 @@ body {
 table {
     position: relative;
 
-    overflow: auto;
-
     box-sizing: border-box;
     width: 100%;
     margin: 0;
@@ -143,6 +171,20 @@ table {
 
     border: none;
     border-collapse: collapse;
+
+    thead {
+        display: table-header-group;
+
+        th {
+            text-align: left;
+
+            font-weight: 700;
+
+            &.header-right {
+                text-align: right;
+            }
+        }
+    }
 
     tr {
         margin: 0;
@@ -164,11 +206,14 @@ table {
 
     td,
     th {
-        box-sizing: content-box;
         width: 100%;
         margin: 0;
         padding: $padding-gap $padding-small;
 
+        text-align: left;
+
         border: $border-width solid $border-color;
+
+        font-weight: 400;
     }
 }

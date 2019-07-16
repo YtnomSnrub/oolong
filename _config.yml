@@ -29,3 +29,7 @@ defaults:
       path: "assets/data/presets"
     values:
       preset: true
+  - scope:
+      path: "assets/data/presets/cities"
+    values:
+      preset_cities: true

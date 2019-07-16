@@ -20,17 +20,23 @@ $padding-large: 2.4rem !default;
 $padding-medium: 1.6rem !default;
 $padding-small: 0.6rem !default;
 $padding-gap: 0.2rem !default;
+$page-breakpoint-horizontal: 64rem !default;
+$page-breakpoint-full: 48rem !default;
 // Border
 $border-width: 1px !default;
 $border-radius: 0.5rem !default;
-$border-color: rgba(0, 0, 0, 0.25) !default;
+$border-color: rgba(0, 0, 0, 0.2) !default;
 
 // Shadows
-$shadow-panel: 0 2px 12px rgba(0, 0, 0, 0.4) !default;
+$shadow-panel: 0 0 8px rgba(0, 0, 0, 0.25) !default;
+$shadow-dialog: 0 4px 24px rgba(0, 0, 0, 0.4) !default;
+$shadow-header: 0 1px 4px rgba(0, 0, 0, 0.25) !default;
 
 // Import partials.
 @import
     "content/text",
     "content/layout",
-    "content/input"
+    "content/dialog",
+    "content/input",
+    "content/lists"
 ;

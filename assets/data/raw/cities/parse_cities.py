@@ -1,9 +1,31 @@
+import os
+import shutil
+
 import csv
 import pycountry
+
 from collections import defaultdict
 
+
+print("Cleaning output directory")
+# Create output directory
+OUTPUT_DIR = "../../presets/cities/"
+if not os.path.isdir(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
+# Clean output directory
+for file in os.listdir(OUTPUT_DIR):
+    file_path = os.path.join(OUTPUT_DIR, file)
+    try:
+        if os.path.isfile(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print(e)
+
+
 # Read cities file and write into files by country
-print("Reading csv file")
+print("Reading csv files")
 country_cities = defaultdict(lambda: [])
 with open("worldcitiespop.csv", newline="", encoding="utf-8") as cities:
     # Open file with csv reader
@@ -16,10 +38,16 @@ with open("worldcitiespop.csv", newline="", encoding="utf-8") as cities:
         city_name = row[2]
         country_cities[country].append(city_name)
 
+
 print("Writing city files")
 # Create files for cities
-FOLDER_OUTPUT = "../../presets/cities/"
+CITIES_MIN = 1000
 for country_code in country_cities:
+    # Check that there are enough cities
+    city_count = len(country_cities[country_code])
+    if city_count < CITIES_MIN:
+        continue
+
     # Get country from pycountry
     country = pycountry.countries.get(alpha_2=country_code)
     # Check historic countries if not found
@@ -28,10 +56,12 @@ for country_code in country_cities:
 
     if country is not None:
         # Write the cities as lines to a new file
-        file_name = FOLDER_OUTPUT + "Cities - " + country.name + ".txt"
-        with open(file_name, "w", encoding="utf-8") as cities:
+        file_name = country.name + ";" + str(city_count) + ".txt"
+        file_path = os.path.join(OUTPUT_DIR, file_name)
+        with open(file_path, "w", encoding="utf-8") as cities:
             cities.write("\n".join(country_cities[country_code]))
     else:
         print("No country with code: " + country_code)
+
 
 print("Done")

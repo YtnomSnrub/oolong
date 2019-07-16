@@ -8,6 +8,6 @@ Due to size limitations the raw data files aren't on GitHub, but can be download
 
 ### Cities
 
-https://www.kaggle.com/max-mind/world-cities-database/
+<https://www.kaggle.com/max-mind/world-cities-database/>
 
 Location: `assets/data/raw/cities/worldcitiespop.csv`

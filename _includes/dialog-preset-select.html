@@ -1,0 +1,37 @@
+{%- capture dialog_content -%}
+<div class="dialog-content-inner">
+    <h3>Cities</h3>
+    <ul class="list-select">
+        <li class="list-select-header flex-horizontal">
+            <span class="flex-fill">Name</span>
+            <span>Lines</span>
+        </li>
+        {%- assign presets_type = site.static_files | where: "preset_cities", true -%}
+        {%- for file in presets_type -%}
+        {%- assign file_name = file.basename | split: ";" -%}
+        <li data-preset-file-path="{{ site.baseurl }}{{ file.path }}" data-preset-file-name="{{ file_name[0] }}" data-preset-type="Cities"
+            class="list-select-item preset-select-item flex-horizontal" tabindex="0">
+            <span class="flex-fill">{{ file_name[0] }}</span>
+            {%- if file_name.size > 1 -%}
+            <span class="item-detail preset-item-lines" data-lines="{{ file_name[1] }}"></span>
+            {%- endif -%}
+        </li>
+        {%- endfor -%}
+    </ul>
+</div>
+
+<script>
+    (function () {
+        let linesCells = document.getElementsByClassName("preset-item-lines");
+        for (let i = 0; i < linesCells.length; ++i) {
+            let linesCell = linesCells[i];
+            let lines = parseInt(linesCell.getAttribute("data-lines"));
+            if (lines) {
+                linesCell.innerHTML = lines.toLocaleString();
+            }
+        }
+    })();
+</script>
+{%- endcapture -%}
+
+{%- include dialog.html id="DialogPresetSelect" title="Preset Selection" close="Cancel" content=dialog_content open="true" -%}

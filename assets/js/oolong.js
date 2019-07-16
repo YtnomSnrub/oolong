@@ -41,6 +41,7 @@
         }
     }
 
+    // Setup chain baking
     let sourceContent = {};
     function updateBakedChain(content, dataSource) {
         setTextContent(textCurrentData, "No source data loaded");
@@ -82,11 +83,43 @@
         }, 250);
     }
 
+    // Setup preset handler
+    let dialogPreset = document.getElementById("DialogPresetSelect");
+    let buttonLoadPreset = document.getElementById("ButtonLoadPreset");
+    buttonLoadPreset.addEventListener("click", function () {
+        dialogPreset.openDialog();
+    });
+
+    // Setup preset click
+    let presetSelectItems = document.getElementsByClassName("preset-select-item");
+    for (let presetSelectIndex = 0; presetSelectIndex < presetSelectItems.length; presetSelectIndex++) {
+        let presetSelectItem = presetSelectItems[presetSelectIndex];
+        presetSelectItem.addEventListener("click", function () {
+            // Close the dialog
+            dialogPreset.closeDialog();
+
+            // Clear text
+            inputUploadText.value = "";
+            // Get the file name for the item
+            let filePath = presetSelectItem.getAttribute("data-preset-file-path");
+            let fileName = presetSelectItem.getAttribute("data-preset-file-name");
+            let presetType = presetSelectItem.getAttribute("data-preset-type");
+            let fileRequest = new XMLHttpRequest();
+            fileRequest.open('GET', filePath, true);
+            fileRequest.onreadystatechange = function () {
+                if (fileRequest.readyState === 4 && fileRequest.status === 200) {
+                    updateBakedChain(fileRequest.responseText, "Preset: " + presetType + " - " + fileName);
+                }
+            };
+
+            fileRequest.send();
+        });
+    }
+
     // Setup file handler
     let textUploadFile = document.getElementById("InputUploadFileText");
     let buttonUploadFile = document.getElementById("InputUploadFile");
     buttonUploadFile.addEventListener("change", fileUpdated);
-
     function fileUpdated(event) {
         let target = event.target;
         // Check event files
@@ -115,7 +148,7 @@
         if ("files" in buttonUploadFile && buttonUploadFile.files.length > 0) {
             // Read content from first file
             let file = buttonUploadFile.files[0];
-            const reader = new FileReader();
+            let reader = new FileReader();
             // Setup read events
             reader.onload = function (event) {
                 updateBakedChain(event.target.result, file.name);
@@ -278,14 +311,6 @@
             // Add headings to table
             pageKeyValues.classList.remove("hidden");
             tableKeyValues.innerHTML = "";
-            let headingRow = document.createElement("tr");
-            tableKeyValues.appendChild(headingRow);
-            let headingSymbol = document.createElement("th");
-            headingSymbol.appendChild(document.createTextNode("Symbol"));
-            headingRow.appendChild(headingSymbol);
-            let headingAmount = document.createElement("th");
-            headingAmount.appendChild(document.createTextNode("Chance"));
-            headingRow.appendChild(headingAmount);
             // Add values to table
             values.forEach(function (value) {
                 // Create new row

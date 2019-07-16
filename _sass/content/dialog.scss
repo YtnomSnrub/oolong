@@ -1,0 +1,87 @@
+$dialog-z-index: 100;
+$dialog-color-background: rgba(0, 0, 0, 0.5);
+$dialog-transition-time-in: 0.25s;
+$dialog-transition-time-out: 0.15s;
+
+.dialog {
+    position: fixed;
+    z-index: $dialog-z-index;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    align-items: center;
+    justify-content: center;
+
+    &.visible {
+        .dialog-background {
+            transition: opacity $dialog-transition-time-in * 2 ease;
+
+            opacity: 1;
+        }
+
+        .dialog-content {
+            transition: opacity $dialog-transition-time-in ease-out, transform $dialog-transition-time-in ease-out;
+            transform: none;
+
+            opacity: 1;
+        }
+    }
+
+    .dialog-background {
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        transition: opacity $dialog-transition-time-out * 2 ease;
+
+        opacity: 0;
+        background: $dialog-color-background;
+    }
+
+    .dialog-content {
+        position: relative;
+        z-index: 1;
+
+        overflow: hidden;
+
+        margin: $padding-large;
+
+        transition: opacity $dialog-transition-time-out ease-in, transform $dialog-transition-time-out ease-in;
+        transform: scale(0.8);
+
+        opacity: 0;
+        border: none;
+        border-radius: $border-radius;
+        background-color: $foreground-color;
+        box-shadow: $shadow-dialog;
+
+        .page-header {
+            z-index: 1;
+
+            padding: $padding-small $padding-large;
+
+            box-shadow: $shadow-header;
+        }
+
+        .dialog-content-inner {
+            overflow: auto;
+
+            padding: $padding-medium $padding-large;
+        }
+
+        .dialog-content-footer {
+            padding: $padding-small;
+
+            border-top: $border-width solid $border-color;
+        }
+    }
+}

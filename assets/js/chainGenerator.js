@@ -21,4 +21,4 @@ const chainGenerator = {
 
         return newContent;
     }
-}
+};

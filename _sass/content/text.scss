@@ -1,5 +1,5 @@
 @mixin font-heading {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 @mixin font-subheading {
@@ -18,7 +18,6 @@ h3,
 h4,
 h5,
 h6,
-span,
 input,
 button {
     margin: 0;
@@ -33,18 +32,11 @@ button {
 }
 
 body {
+    color: $text-color;
+
     line-height: 1.5;
 
 @include font-body;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin-bottom: $padding-gap;
 }
 
 h1 {
@@ -54,6 +46,10 @@ h1 {
 }
 
 h2 {
+    margin: $padding-gap 0 $padding-small;
+
+    text-transform: uppercase;
+
     color: $accent-color;
 
     font-size: 1.2rem;
@@ -62,21 +58,24 @@ h2 {
 }
 
 h3 {
+    position: relative;
+
+    margin: $padding-gap 0 $padding-small;
+
     letter-spacing: 0.02rem;
     text-transform: uppercase;
 
-    font-size: 1rem;
+    color: $accent-color;
+
+    font-size: 0.9rem;
     font-weight: 700;
 
 @include font-subheading;
 }
 
-h4 {
-    font-size: 1rem;
-}
-
+h4,
 .heading-description {
-    margin-bottom: $padding-gap;
+    margin: $padding-gap 0;
 
     letter-spacing: 0.02rem;
     text-transform: uppercase;
@@ -138,21 +137,41 @@ p {
     margin: $padding-small 0;
 
     text-align: center;
-    text-transform: lowercase;
 
-    color: $text-color-detail;
-    border-bottom: $border-width solid $border-color;
+    border-bottom: $border-width solid $accent-color;
 
-    font-style: italic;
     line-height: 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a {
+        margin: 0;
+    }
 
     span {
         position: relative;
-        top: -0.04rem;
 
         padding: 0 $padding-small;
 
         background-color: $foreground-color;
+    }
+
+    &.text-ruled-divider {
+        text-transform: lowercase;
+
+        color: $text-color-detail;
+        border-bottom: $border-width solid $border-color;
+
+        font-style: italic;
+
+        span {
+            top: -0.04rem;
+        }
     }
 }
 
