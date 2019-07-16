@@ -14,16 +14,16 @@
         document.createElement('footer');
     </script>
 
-    <div class="page" id="PageWrapper">
-        <header class="page-content page-header">
-            <a href="/oolong/">
-                <h1>Oolong</h1>
-            </a>
-        </header>
+    <div class="flex-center">
+        <div class="page" id="PageWrapper">
+            <header aria-label="Header" class="page-header">
+                <a href="/oolong/">
+                    <h1>Oolong</h1>
+                </a>
+            </header>
 
-        <main aria-label="Content">
             {{ content }}
-        </main>
+        </div>
     </div>
 
     <div aria-label="Content" id="PageError" style="display: none; padding: 24px;">

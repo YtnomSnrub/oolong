@@ -4,7 +4,8 @@ layout: default
 
 {%- include dialog-preset-select.html -%}
 
-<div class="page-content-inner">
+
+<main aria-label="Content" class="page-content-inner">
     <div class="page-content page-content-primary">
         <h2>Data</h2>
 
@@ -102,25 +103,27 @@ layout: default
     </div>
 
     <div class="page-content page-content-secondary hidden" id="PageContentTableValues">
-        <div class="flex-vertical flex-container">
+        <div class="page-content-sticky flex-vertical">
             <h2>Probability Table</h2>
 
             <label for="TextKey" class="heading-description">Key</label>
             <p id="TextKey"></p>
 
             <div class="flex-padding-small"></div>
-            <table class="table-key-values">
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Chance</th>
-                    </tr>
-                </thead>
-                <tbody id="TableKeyValues"></tbody>
-            </table>
+            <div class="flex-fill page-content-scrollable">
+                <table class="table-key-values">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Chance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="TableKeyValues"></tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</main>
 
 
 <script src="{{ '/assets/js/chain.js' | relative_url }}"></script>

@@ -16,10 +16,10 @@ $accent-color-focus: lighten($accent-color, 45%) !default;
 $accent-gradient: linear-gradient(45deg, darken($accent-color, 10%), $accent-color, lighten($accent-color, 10%));
 
 // Layout
-$padding-large: 2.4rem !default;
-$padding-medium: 1.6rem !default;
-$padding-small: 0.6rem !default;
-$padding-gap: 0.2rem !default;
+$padding-large: 36px !default;
+$padding-medium: 24px !default;
+$padding-small: 12px !default;
+$padding-gap: 4px !default;
 $page-breakpoint-horizontal: 64rem !default;
 $page-breakpoint-full: 48rem !default;
 // Border

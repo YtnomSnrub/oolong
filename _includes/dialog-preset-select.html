@@ -1,6 +1,8 @@
 {%- capture dialog_content -%}
 <div class="dialog-content-inner">
-    <h3>Cities</h3>
+    <div class="text-ruled">
+        <h3><span>Cities</span></h3>
+    </div>
     <ul class="list-select">
         <li class="list-select-header flex-horizontal">
             <span class="flex-fill">Name</span>
@@ -34,4 +36,4 @@
 </script>
 {%- endcapture -%}
 
-{%- include dialog.html id="DialogPresetSelect" title="Preset Selection" close="Cancel" content=dialog_content open="true" -%}
+{%- include dialog.html id="DialogPresetSelect" title="Preset Selection" close="Cancel" content=dialog_content -%}

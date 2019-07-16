@@ -8,6 +8,13 @@
     flex-direction: column;
 }
 
+.flex-center {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
 .flex-container {
     padding: $padding-small 0;
 }
@@ -48,37 +55,37 @@ header {
 .page {
     position: relative;
 
-    display: table;
+    display: flex;
+    flex-direction: row;
 
+    max-width: 100vw;
     min-height: 100vh;
-    margin: auto;
     padding: 0;
 
     border: none;
     background-color: $foreground-color;
     box-shadow: $shadow-panel;
 
-    @media screen and (max-width: $page-breakpoint-full) {
-        display: block;
-    }
-}
-
-.page-content {
-    display: table-cell;
-
-    vertical-align: top;
-
     @media screen and (max-width: $page-breakpoint-horizontal) {
-        display: block;
+        flex-direction: column;
+    }
 
-        min-width: 100%;
+    @media screen and (max-width: $page-breakpoint-full) {
+        width: 100%;
     }
 }
 
 .page-content-inner {
     position: relative;
 
+    display: flex;
+    flex-direction: row;
+
     padding: $padding-medium $padding-large;
+
+    @media screen and (max-width: $page-breakpoint-horizontal) {
+        display: block;
+    }
 }
 
 .page-header {
@@ -103,24 +110,16 @@ header {
             letter-spacing: 0rem;
         }
     }
-
-    @media screen and (max-width: $page-breakpoint-horizontal) {
-        display: block;
-
-        min-width: 100%;
-    }
 }
 
 .page-content-primary {
     max-width: 36rem;
+
+    flex: 36rem;
 }
 
 .page-content-secondary {
-    position: sticky;
-    top: 0;
-    bottom: 0;
-
-    max-width: 20rem;
+    max-width: 16rem;
 
     transition: max-width 0.4s ease-in-out, border-left 0.4s ease-in-out, opacity 0.1s ease-in-out 0.25s;
     white-space: nowrap;
@@ -128,9 +127,9 @@ header {
     opacity: 1;
     border-left: $padding-medium solid transparent;
 
-    @media screen and (max-width: $page-breakpoint-horizontal) {
-        max-width: 36rem;
+    flex: 16rem;
 
+    @media screen and (max-width: $page-breakpoint-horizontal) {
         transition: none;
 
         border-left: 0 solid transparent;
@@ -147,6 +146,29 @@ header {
 
         opacity: 0;
         border-left-width: 0;
+    }
+}
+
+.page-content-sticky {
+    position: sticky;
+    top: $padding-medium;
+
+    height: 100%;
+    max-height: calc(100vh - #{2 * $padding-medium});
+}
+
+.page-content-scrollable {
+    overflow: auto;
+}
+
+.page-content {
+    @media screen and (max-width: $page-breakpoint-horizontal) {
+        width: 100%;
+        max-width: 36rem;
+    }
+
+    @media screen and (max-width: $page-breakpoint-full) {
+        max-width: 100%;
     }
 }
 

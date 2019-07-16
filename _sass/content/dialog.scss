@@ -53,6 +53,7 @@ $dialog-transition-time-out: 0.15s;
 
         overflow: hidden;
 
+        max-width: 100%;
         margin: $padding-large;
 
         transition: opacity $dialog-transition-time-out ease-in, transform $dialog-transition-time-out ease-in;
@@ -61,7 +62,6 @@ $dialog-transition-time-out: 0.15s;
         opacity: 0;
         border: none;
         border-radius: $border-radius;
-        background-color: $foreground-color;
         box-shadow: $shadow-dialog;
 
         .page-header {
@@ -73,15 +73,22 @@ $dialog-transition-time-out: 0.15s;
         }
 
         .dialog-content-inner {
+            z-index: 1;
+
             overflow: auto;
 
             padding: $padding-medium $padding-large;
+
+            background-color: $foreground-color;
         }
 
         .dialog-content-footer {
+            z-index: 1;
+
             padding: $padding-small;
 
             border-top: $border-width solid $border-color;
+            background-color: $foreground-color;
         }
     }
 }
