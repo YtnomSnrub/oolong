@@ -113,17 +113,30 @@
 
             // Clear text
             inputUploadText.value = "";
-            // Get the file name for the item
+            // Get the file name for the item  
             let filePath = presetSelectItem.getAttribute("data-preset-file-path");
             let fileName = presetSelectItem.getAttribute("data-preset-file-name");
             let presetType = presetSelectItem.getAttribute("data-preset-type");
+            let dataValue = presetType + " - " + fileName;
             let fileRequest = new XMLHttpRequest();
             fileRequest.open('GET', filePath, true);
             fileRequest.onreadystatechange = function () {
                 if (fileRequest.readyState === 4 && fileRequest.status === 200) {
-                    updateBakedChain(fileRequest.responseText, "Preset", presetType + " - " + fileName);
+                    updateBakedChain(fileRequest.responseText, "Preset", dataValue);
+                } else if (fileRequest.status !== 200) {
+                    console.error("Error loading preset");
+                    bakedChain = null;
+                    // Close the dialog
+                    dialogLoadChain.closeDialog();
+                    // Update status
+                    setTextContent(textCurrentData, "No source data loaded");
+                    setTextContent(textCurrentStatus, "Could not load preset", "text-error");
                 }
             };
+
+            // Open dialog
+            dialogLoadChain.openDialog();
+            dialogLoadChainFilename.innerHTML = dataValue;
 
             fileRequest.send();
         });
@@ -170,16 +183,28 @@
             // Setup error handling
             reader.onerror = function (error) {
                 console.error(error);
+                bakedChain = null;
                 // Update status
                 textUploadFile.value = "";
                 setTextContent(textCurrentStatus, "Could not load file", "text-error");
+                // Close dialog
+                dialogLoadChain.closeDialog();
+                // Update status
+                setTextContent(textCurrentData, "No source data loaded");
+                setTextContent(textCurrentStatus, "No files selected", "text-error");
             };
+
+            // Open dialog
+            dialogLoadChain.openDialog();
+            dialogLoadChainFilename.innerHTML = file.name;
 
             // Read file as text
             reader.readAsText(file);
         } else {
+            bakedChain = null;
             // Update status
             textUploadFile.value = "";
+            setTextContent(textCurrentData, "No source data loaded");
             setTextContent(textCurrentStatus, "No files selected", "text-error");
         }
     }
