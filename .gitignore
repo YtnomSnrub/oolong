@@ -5,6 +5,7 @@ _site
 
 # Visual Studio Code
 .vscode/*
+!.vscode/launch.json
 
 # Data
 assets/data/raw/**/*.csv
