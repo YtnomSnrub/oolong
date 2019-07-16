@@ -1,0 +1,36 @@
+{%- capture dialog_content -%}
+<div class="dialog-content-inner">
+    <div class="flex-vertical">
+        <div class="text-ruled">
+            <h3><span id="DialogLoadChainFilename"></span></h3>
+        </div>
+
+        <div class="flex-padding-small"></div>
+
+        <div class="loading-chain">
+            <div class="loading-chain-inner">
+                <div>
+                    <svg width="50px" height="50px" viewBox="0 0 50 50">
+                        <polyline points="0 25 45 0"></polyline>
+                    </svg>
+                    <svg width="50px" height="50px" viewBox="0 0 50 50">
+                        <polyline points="0 25 50 25"></polyline>
+                    </svg>
+                    <svg width="50px" height="50px" viewBox="0 0 50 50">
+                        <polyline points="0 25 45 50"></polyline>
+                    </svg>
+                </div>
+
+                <div>
+                    <div class="loading-chain-node" style="left: 0%; top: 50%;"></div>
+                    <div class="loading-chain-node" style="left: 90%; top: 0%;"></div>
+                    <div class="loading-chain-node" style="left: 100%; top: 50%;"></div>
+                    <div class="loading-chain-node" style="left: 90%; top: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endcapture -%}
+
+{%- include dialog.html id="DialogLoadChain" title="Building Data" content=dialog_content -%}
