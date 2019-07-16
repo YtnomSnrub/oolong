@@ -1,0 +1,213 @@
+$loading-chain-time: 2s;
+$loading-chain-delay: 0.2s;
+$loading-chain-dash-length: 60px;
+
+@keyframes loading-chain-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loading-chain-node-1 {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        animation-timing-function: ease-in;
+    }
+
+    60% {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+    }
+
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+    }
+}
+
+@keyframes loading-chain-node-2 {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    75% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        animation-timing-function: ease-in;
+    }
+
+    85% {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+    }
+
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+    }
+}
+
+@keyframes loading-chain-node-3 {
+    0% {
+        left: 100%;
+
+        transform: translate3d(-50%, -50%, 0) scale(0);
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    75% {
+        left: 100%;
+
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        left: 0;
+
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+}
+
+@keyframes loading-chain-link {
+    0% {
+        animation-timing-function: ease-in-out;
+
+        opacity: 0;
+
+        stroke-dashoffset: $loading-chain-dash-length;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        animation-timing-function: ease-in-out;
+
+        opacity: 1;
+
+        stroke-dashoffset: 0;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+
+        stroke-dashoffset: -$loading-chain-dash-length;
+    }
+
+    100% {
+        opacity: 0;
+
+        stroke-dashoffset: -$loading-chain-dash-length;
+    }
+}
+
+.loading-chain {
+    padding: $padding-medium;
+
+    animation: loading-chain-in 0.1s $loading-chain-delay 1 normal linear both;
+
+    .loading-chain-inner {
+        position: relative;
+
+        width: 60px;
+        height: 60px;
+        margin: auto;
+    }
+
+    .loading-chain-node {
+        position: absolute;
+        z-index: 1;
+
+        width: 15px;
+        height: 15px;
+
+        transform: translate3d(-50%, -50%, 0) scale(0);
+
+        border: none;
+        border-radius: 15px;
+        background-color: $accent-color;
+
+        backface-visibility: hidden;
+
+        &::after {
+            position: absolute;
+            z-index: 1;
+            left: 4px;
+            right: 4px;
+            top: 4px;
+            bottom: 4px;
+
+            content: "";
+
+            border: none;
+            border-radius: 15px;
+            background-color: $foreground-color;
+        }
+
+        &:nth-child(1) {
+            animation: loading-chain-node-1 $loading-chain-time $loading-chain-delay infinite normal linear both;
+        }
+
+        &:nth-child(2) {
+            animation: loading-chain-node-2 $loading-chain-time $loading-chain-delay infinite normal linear both;
+        }
+
+        &:nth-child(3) {
+            animation: loading-chain-node-3 $loading-chain-time $loading-chain-delay infinite normal linear both;
+        }
+
+        &:nth-child(4) {
+            animation: loading-chain-node-2 $loading-chain-time $loading-chain-delay infinite normal linear both;
+        }
+    }
+
+    svg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 100%;
+
+        polyline {
+            animation: loading-chain-link $loading-chain-time $loading-chain-delay infinite normal linear both;
+
+            backface-visibility: hidden;
+            fill: none;
+            stroke: $accent-color;
+            stroke-dasharray: $loading-chain-dash-length;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2px;
+        }
+    }
+}

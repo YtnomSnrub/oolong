@@ -27,16 +27,18 @@
                 if (dialog.classList.contains("visible")) {
                     dialog.classList.remove("visible");
                     setTimeout(function () {
-                        dialog.style.visibility = "hidden";
+                        dialog.style.display = "none";
                     }, 500);
                 } else {
-                    dialog.style.visibility = "hidden";
+                    dialog.style.display = "none";
                 }
             }
 
             dialog.openDialog = function () {
-                dialog.style.visibility = "visible";
-                dialog.classList.add("visible");
+                dialog.style.removeProperty("display");
+                setTimeout(function () {
+                    dialog.classList.add("visible");
+                }, 10);
             }
 
             // Start closed

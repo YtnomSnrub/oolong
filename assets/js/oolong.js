@@ -41,28 +41,31 @@
         }
     }
 
+    // Setup loading dialog
+    let dialogLoadChain = document.getElementById("DialogLoadChain");
+    let dialogLoadChainFilename = document.getElementById("DialogLoadChainFilename");
     // Setup chain baking
     let sourceContent = {};
-    function updateBakedChain(content, dataSource) {
+    function updateBakedChain(content, dataSource, dataValue) {
         setTextContent(textCurrentData, "No source data loaded");
         setTextContent(textCurrentStatus, "Loading source data");
         bakedChain = null;
         setTimeout(function () {
             // Try to load the content asyncronously
             if (window.Worker) {
-                let chainBakerWorker = new Worker("assets/js/workerChainBaker.js");
-                chainBakerWorker.postMessage({
-                    input: content,
-                    options: getChainOptions()
-                });
+                // Open dialog
+                dialogLoadChain.openDialog();
+                dialogLoadChainFilename.innerHTML = dataValue;
 
-                // Updated data when the worker responds
+                // Setup worker
+                let chainBakerWorker = new Worker("assets/js/workerChainBaker.js");
+                // Update data when the worker responds
                 chainBakerWorker.onmessage = function (e) {
                     if (e.data) {
                         bakedChain = chain.loadBakedChain(e.data.bakedChain);
                         sourceContent = e.data.sourceContent;
                         // Set current data
-                        setTextContent(textCurrentData, dataSource);
+                        setTextContent(textCurrentData, dataSource + ": " + dataValue);
                         setTextContent(textCurrentStatus, "Source data up to date", "text-success");
                     } else {
                         // Set error data
@@ -71,7 +74,17 @@
 
                     // No longer need worker
                     chainBakerWorker.terminate();
+                    // Close dialog
+                    setTimeout(dialogLoadChain.closeDialog, 200);
                 };
+
+                // Send message to worker
+                setTimeout(function () {
+                    chainBakerWorker.postMessage({
+                        input: content,
+                        options: getChainOptions()
+                    });
+                }, 200);
             } else {
                 let chainData = chainBaker.createBakedChain(content, getChainOptions());
                 sourceContent = chainData.sourceContent;
@@ -108,7 +121,7 @@
             fileRequest.open('GET', filePath, true);
             fileRequest.onreadystatechange = function () {
                 if (fileRequest.readyState === 4 && fileRequest.status === 200) {
-                    updateBakedChain(fileRequest.responseText, "Preset: " + presetType + " - " + fileName);
+                    updateBakedChain(fileRequest.responseText, "Preset", presetType + " - " + fileName);
                 }
             };
 
@@ -151,7 +164,7 @@
             let reader = new FileReader();
             // Setup read events
             reader.onload = function (event) {
-                updateBakedChain(event.target.result, file.name);
+                updateBakedChain(event.target.result, "File", file.name);
             };
 
             // Setup error handling
@@ -181,7 +194,7 @@
     let buttonLoadFromText = document.getElementById("ButtonLoadText");
     buttonLoadFromText.addEventListener("click", loadChainFromText);
     function loadChainFromText() {
-        updateBakedChain(inputUploadText.value, "Custom Text");
+        updateBakedChain(inputUploadText.value, "Text", inputUploadText.value.slice(0, 20));
     }
 
     let isFinished = false;
