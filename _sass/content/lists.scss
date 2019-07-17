@@ -1,5 +1,5 @@
 .list-select {
-    min-width: 20rem;
+    width: 20rem;
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
     list-style: none;
 
     @media screen and (max-width: $page-breakpoint-full) {
-        min-width: auto;
+        width: auto;
     }
 
     .list-select-item,
