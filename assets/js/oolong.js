@@ -36,15 +36,36 @@
         inputOrder.value = orderValue;
         // Update status
         setTextContent(textCurrentStatus, "Source data out of date", "text-error");
-    })
+    });
+
+    // Setup input type options
+    let inputSplitTypeRadios = document.getElementsByName("inputloadsplittype");
+    for (let inputTypeIndex = 0; inputTypeIndex < inputSplitTypeRadios.length; ++inputTypeIndex) {
+        let inputSplitTypeRadio = inputSplitTypeRadios[inputTypeIndex];
+        inputSplitTypeRadio.addEventListener("change", function () {
+            // Update status
+            setTextContent(textCurrentStatus, "Source data out of date", "text-error");
+        });
+    }
 
     // Setup chain options
     let optionSkipDuplicates = document.getElementById("OptionCheckboxSkipDuplicate");
     function getChainOptions() {
+        // Find the input split type
+        let inputSplitType = null;
+        for (let i = 0, length = inputSplitTypeRadios.length; i < length; i++) {
+            // Check the radio
+            if (inputSplitTypeRadios[i].checked) {
+                inputSplitType = inputSplitTypeRadios[i].value;
+                break;
+            }
+        }
+
         return {
             order: parseInt(inputOrder.value),
             skipDuplicates: optionSkipDuplicates.checked,
-            splitType: "lines"
+            joinString: inputSplitType === "sentences" ? " " : "",
+            splitType: inputSplitType
         }
     }
 
@@ -321,6 +342,7 @@
             generateSetFinished(true);
             setTextContent(textGeneratedWord, "No loaded data", "text-error");
         } else {
+            let options = getChainOptions();
             // Get content
             let content = textGeneratedWord.innerHTML;
             if (textGeneratedWord.classList.contains("text-error") ||
@@ -328,8 +350,9 @@
                 content = "";
             }
 
-            let key = bakedChain.getKeyForSymbols(content.split(""), false);
-            textKey.innerHTML = key.join("");
+            let contentSplit = content.length > 0 ? content.split(options.joinString) : [];
+            let key = bakedChain.getKeyForSymbols(contentSplit, false);
+            textKey.innerHTML = key.join(options.joinString);
             // Handle next possibilities
             let keyValues = bakedChain.getPossibilitiesForSymbols(key);
             let values = [];
@@ -348,7 +371,11 @@
             // Generate next symbol
             let nextSymbol = bakedChain.generateNextSymbol(key);
             if (nextSymbol !== SYMBOL_END) {
-                setTextContent(textGeneratedWord, content + nextSymbol);
+                if (content.length > 0) {
+                    setTextContent(textGeneratedWord, content + options.joinString + nextSymbol);
+                } else {
+                    setTextContent(textGeneratedWord, nextSymbol);
+                }
             } else {
                 generateSetFinished(true);
             }

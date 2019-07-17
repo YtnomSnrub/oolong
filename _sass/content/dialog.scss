@@ -64,7 +64,7 @@ $dialog-transition-time-out: 0.15s;
         border-radius: $border-radius;
         box-shadow: $shadow-dialog;
 
-        @media screen and (max-width: $page-breakpoint-full) {
+        @media screen and (max-width: $page-breakpoint-medium) {
             margin: $padding-medium;
         }
 

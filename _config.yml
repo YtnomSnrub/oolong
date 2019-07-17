@@ -15,10 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Oolong
 email: jalaunder@gmail.com
-description: >- # this means to ignore newlines until next config key
-  A random word build using markov chains on a custom input.
 baseurl: "/oolong" # the subpath of your site
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
 author: YtnomSnrub
 encoding: utf-8
 

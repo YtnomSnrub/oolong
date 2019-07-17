@@ -1,0 +1,11 @@
+<label class="checkbox" for="{{ include.id }}">
+    {%- if include.checked -%}
+    <input type="checkbox" name="{{ include.id }}" id="{{ include.id }}" checked>
+    {%- else -%}
+    <input type="checkbox" name="{{ include.id }}" id="{{ include.id }}">
+    {%- endif -%}
+    <svg width="20px" height="20px" viewBox="0 0 20 20">
+        <polyline points="4 11 8 15 16 6"></polyline>
+    </svg>
+    <span>{{ include.label }}</span>
+</label>

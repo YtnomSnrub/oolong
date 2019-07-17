@@ -67,7 +67,7 @@ header {
     background-color: $foreground-color;
     box-shadow: $shadow-panel;
 
-    @media screen and (max-width: $page-breakpoint-horizontal) {
+    @media screen and (max-width: $page-breakpoint-vertical) {
         flex-direction: column;
     }
 
@@ -84,7 +84,7 @@ header {
 
     padding: $padding-medium $padding-large;
 
-    @media screen and (max-width: $page-breakpoint-horizontal) {
+    @media screen and (max-width: $page-breakpoint-vertical) {
         display: block;
     }
 
@@ -138,7 +138,7 @@ header {
 
     flex: 16rem;
 
-    @media screen and (max-width: $page-breakpoint-horizontal) {
+    @media screen and (max-width: $page-breakpoint-vertical) {
         transition: none;
 
         border-left: 0 solid transparent;
@@ -165,7 +165,7 @@ header {
     height: 100%;
     max-height: calc(100vh - #{2 * $padding-medium});
 
-    @media screen and (max-width: $page-breakpoint-horizontal) {
+    @media screen and (max-width: $page-breakpoint-vertical) {
         height: auto;
         max-height: none;
     }
@@ -176,7 +176,7 @@ header {
 }
 
 .page-content {
-    @media screen and (max-width: $page-breakpoint-horizontal) {
+    @media screen and (max-width: $page-breakpoint-vertical) {
         width: 100%;
         max-width: 36rem;
     }

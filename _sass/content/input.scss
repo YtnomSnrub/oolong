@@ -11,10 +11,10 @@ button,
 textarea,
 label.button,
 label.checkbox,
+label.radio,
 input[type="file"] + label {
     position: relative;
 
-    display: block;
     overflow: hidden;
 
     box-sizing: border-box;
@@ -91,7 +91,8 @@ textarea {
 }
 
 input[type="file"],
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
     display: block;
 
     width: 0;
@@ -153,7 +154,7 @@ input[type="file"] + label {
     }
 }
 
-$checkbox-size: 1.5rem;
+$checkbox-size: 21px;
 
 label.checkbox {
     padding-left: calc(#{$checkbox-size} + #{$padding-small});
@@ -240,6 +241,103 @@ label.checkbox {
 
         &:active + svg {
             background-color: $accent-color-active;
+        }
+    }
+}
+
+.radio-group {
+    @media screen and (max-width: $page-breakpoint-medium) {
+        padding-bottom: $padding-gap;
+    }
+}
+
+label.radio {
+    display: inline-block;
+
+    width: auto;
+
+    cursor: pointer;
+
+    @media screen and (max-width: $page-breakpoint-medium) {
+        display: block;
+    }
+
+    span,
+    .radio-inner {
+        display: inline-block;
+
+        vertical-align: middle;
+    }
+
+    span {
+        padding-left: $padding-small;
+
+        transition: color 0.1s ease-in-out;
+
+        color: $text-color;
+    }
+
+    .radio-inner {
+        position: relative;
+
+        width: $checkbox-size;
+        height: $checkbox-size;
+
+        border: none;
+        border-radius: $checkbox-size;
+        background-color: $accent-color;
+
+        &::before {
+            position: absolute;
+            left: $border-width;
+            right: $border-width;
+            top: $border-width;
+            bottom: $border-width;
+
+            margin: auto;
+
+            content: "";
+            transition: transform 0.1s ease-in-out;
+            transform: scale(1);
+
+            border: none;
+            border-radius: $checkbox-size;
+            background-color: $foreground-color;
+        }
+    }
+
+    &:hover {
+        .radio-inner::before {
+            transform: scale(0.8);
+        }
+    }
+
+    &:focus,
+    &:active {
+        .radio-inner + span {
+            color: $accent-color;
+        }
+    }
+
+    &:active {
+        .radio-inner::before {
+            transform: scale(1);
+        }
+    }
+
+    input[type="radio"] {
+        &:checked {
+            & + .radio-inner {
+                &::before {
+                    transform: scale(0.5);
+                }
+            }
+        }
+
+        &:focus {
+            & + .radio-inner + span {
+                color: $accent-color;
+            }
         }
     }
 }

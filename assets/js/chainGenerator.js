@@ -1,10 +1,11 @@
 const chainGenerator = {
     generateNewChain: function (bakedChain, sourceContent, options) {
+        // Find the join string
         let newContent = null;
         // Generate a new chain
         let generationAttempts = 0;
         while (newContent === null) {
-            newContent = bakedChain.generateNewChain().join("");
+            newContent = bakedChain.generateNewChain().join(options.joinString);
             // Check source content
             if (options.skipDuplicates) {
                 if (newContent in sourceContent) {

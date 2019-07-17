@@ -1,0 +1,9 @@
+<label class="radio">
+    {%- if include.checked -%}
+    <input type="radio" name="{{ include.name }}" value="{{ include.value }}" checked>
+    {%- else -%}
+    <input type="radio" name="{{ include.name }}" value="{{ include.value }}">
+    {%- endif -%}
+    <div class="radio-inner"></div>
+    <span>{{ include.label }}</span>
+</label>

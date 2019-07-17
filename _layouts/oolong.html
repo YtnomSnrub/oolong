@@ -31,10 +31,18 @@ layout: default
         </div>
 
         <div class="flex-vertical flex-container">
-            <label for="InputLoadDataType" class="heading-description">Data Type</label>
-            <div class="flex-horizontal">
-
+            <label for="InputLoadSplitType" class="heading-description">Data Type</label>
+            <div class="radio-group" id="InputLoadSplitType">
+                {%- include elements/radio.html name="inputloadsplittype" value="words" label="Words" -%}
+                {%- include elements/radio.html name="inputloadsplittype" value="lines" label="Lines" checked="true" -%}
+                {%- include elements/radio.html name="inputloadsplittype" value="sentences" label="Sentences" -%}
             </div>
+
+            <p class="text-description">
+                Determines how to interpret the source data, which depends on the input format.
+                Lines work best if the input data has a new value on each line, such as the presets,
+                while words and sentences work better for raw text input.
+            </p>
         </div>
 
         <h3 class="text-ruled">Source</h3>
@@ -86,13 +94,8 @@ layout: default
         <h2>Options</h2>
 
         <div class="flex-vertical flex-container">
-            <label class="checkbox" for="OptionCheckboxSkipDuplicate">
-                <input type="checkbox" name="skipduplicate" id="OptionCheckboxSkipDuplicate" checked>
-                <svg width="20px" height="20px" viewBox="0 0 20 20">
-                    <polyline points="4 11 8 15 16 6"></polyline>
-                </svg>
-                <span>No Duplicates</span>
-            </label>
+            {%- include elements/checkbox.html id="OptionCheckboxSkipDuplicate" label="No Duplicates" checked="true" -%}
+
             <p class="text-description">
                 Not allowing duplicates will skip over generations that also appear in the source data.
                 This means that each generated word or sentence will be unique, rather than a copy of something in the

@@ -5,20 +5,22 @@ const chainBaker = {
         // Add words to chain
         let symbols = [];
         if (options.splitType === "sentences") {
-            // Split on lines
+            // Split on sentences
             content.split(/[\\.!?]/).forEach(function (sentence) {
                 let sentenceWords = sentence.match(/\b(\w+)\b/g);
                 if (sentenceWords !== null) {
                     symbols.push(sentenceWords);
-                    console.log(sentenceWords);
                 }
             });
         } else if (options.splitType === "lines") {
             // Split on lines
             symbols = content.split(/\r?\n/);
-        } else {
+        } else if (options.splitType === "words") {
             // Split on words
             symbols = content.match(/\b(\w+)\b/g);
+        } else {
+            // Give an error
+            throw new Error("splitType must be 'sentences', 'lines', or 'words'.");
         }
 
         let sourceContent = {};
@@ -27,7 +29,11 @@ const chainBaker = {
             // Add word to chain
             chainSet.addSymbols(word);
             // Add word to source
-            sourceContent[word] = true;
+            if (Array.isArray(word)) {
+                sourceContent[word.join(options.joinString)] = true;
+            } else {
+                sourceContent[word] = true;
+            }
         });
 
         // Bake the chain

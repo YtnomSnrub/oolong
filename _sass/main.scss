@@ -21,9 +21,11 @@ $padding-medium: 24px !default;
 $padding-small: 12px !default;
 $padding-gap: 4px !default;
 // Breakpoints
-$page-breakpoint-horizontal: 64rem !default;
-$page-breakpoint-full: 48rem !default;
+$page-breakpoint-large: 64rem !default;
+$page-breakpoint-medium: 48rem !default;
 $page-breakpoint-small: 24rem !default;
+$page-breakpoint-vertical: $page-breakpoint-large !default;
+$page-breakpoint-full: $page-breakpoint-medium !default;
 // Border
 $border-width: 1px !default;
 $border-radius: 0.5rem !default;
