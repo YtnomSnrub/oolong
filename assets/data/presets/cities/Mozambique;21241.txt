@@ -4260,7 +4260,7 @@ Chefe Mutota
 Chefe Mutuáli
 Chefe Mutupa
 Chefe Muvucusa
- Chefe Muzamane
+Chefe Muzamane
 Chefe M. Xavane
 Chefe Nacalau
 Chefe Nacari
@@ -14531,7 +14531,7 @@ Munhica
 Munhisso
 Munhoca
 Munhoga
- Munhoque
+Munhoque
 Munhuana
 Munhuma
 Munhuma

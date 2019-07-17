@@ -35,8 +35,10 @@ with open("worldcitiespop.csv", newline="", encoding="utf-8") as cities:
     # Iterate through cities, adding to country dictionary
     for row in cities_reader:
         country = row[0].upper()
-        city_name = row[2]
-        country_cities[country].append(city_name)
+        city_name = row[2].strip()
+        if not "(" in city_name and not ")" in city_name and \
+                not "[" in city_name and not "]" in city_name:
+            country_cities[country].append(city_name)
 
 
 print("Writing city files")

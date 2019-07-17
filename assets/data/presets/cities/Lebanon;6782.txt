@@ -1659,7 +1659,7 @@ Bab al Mira`
 Bab ar Rujm
 B`abda
 B`abdat
- Bâb el Ahmar
+Bâb el Ahmar
 Bab en Nabaa
 Bâb er Raja
 Bâb er Rejm
@@ -5804,7 +5804,7 @@ Mafraq Abu Raghif
 Mafraq ash Shallalat
 Mafraq Ghazir
 Magharat ash Shaykh
- Magharat `Ubayd
+Magharat `Ubayd
 Maghâyer Mahali
 Maghdoûché
 Maghdushah
@@ -6612,7 +6612,7 @@ Tanburit
 Tannurah
 Tannurin al Fawqa
 Tannurin at Tahta
-Taouâhîne Râs en Nahe 
+Taouâhîne Râs en Nahe
 Tarabulus
 Taran
 Târây

@@ -2302,7 +2302,7 @@ Donji Kneginec
 Donji Koblijak
 Donji Koncovcak
 Donji Kosinj
- Donji Kraj
+Donji Kraj
 Donji Kraj
 Donji Kraj
 Donji Kraj
@@ -5978,7 +5978,7 @@ Mala Mlaka
 Mala Mlinska
 Mala Ostrna
 Mala Paka
- Mala Paukova
+Mala Paukova
 Mala Peratovica
 Mala Pisanica
 Mala Plaha
@@ -7610,7 +7610,7 @@ Pestovic
 Pesuti
 Petanovic Brdo
 Petar Ogulinski
- Petar
+Petar
 Petar u Sumi
 Petecchi
 Petehi

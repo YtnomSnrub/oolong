@@ -1390,9 +1390,9 @@ Aloedoe
 Aloeë Boe
 Aloee Boee
 Aloeë Brieung
-Aloeeiët 
-Aloeë It 
-Aloeë Titi 
+Aloeeiët
+Aloeë It
+Aloeë Titi
 Aloegaai
 Aloel
 Aloema
@@ -16463,7 +16463,7 @@ Bero
 Bero
 Berobot
 Beroego
-Beroeksah 
+Beroeksah
 Beroeksan
 Beroerawak
 Beroewen
@@ -17736,7 +17736,7 @@ Biro
 Birobuli
 Biroefoe
 Biroe-hilir
-Biröen 
+Biröen
 Biroh
 Birok
 Biro Lor
@@ -47930,7 +47930,7 @@ Geureunggang
 Geurihieum
 Geuringging
 Geuroegoe
-Geuroego 
+Geuroego
 Geurogoe
 Geurugok
 Geurugu
@@ -58802,7 +58802,7 @@ Kablukan
 Kabluk
 Kaboddi
 Kaboeajan
-Kaboeëng 
+Kaboeëng
 Kaboeh
 Kaboejoe
 Kaboe
@@ -78243,8 +78243,8 @@ Krodan
 Krodja
 Kroeënggeukoeëh
 Kroeëngloeak
-Kroeëngmane 
-Kroeëngraja 
+Kroeëngmane
+Kroeëngraja
 Kroei
 Kroeing
 Kroekah
@@ -88186,7 +88186,7 @@ Loeboekteberau
 Loeboektjempedak
 Loeboektoetoeng
 Loeboetoea
-Loebok Dalam 
+Loebok Dalam
 Loegoeb
 Loehabang
 Loehoelele
@@ -98355,7 +98355,7 @@ Mokupa
 Mokupo Baru
 Mokupo
 Molaaha
-Mölabo 
+Mölabo
 Molamahu
 Mola
 Molampino
@@ -106500,7 +106500,7 @@ Oetefu-kecil
 Oetefu-ketjil
 Oeteno
 Oeteuenpoelo
-Oeteuën Poelò 
+Oeteuën Poelò
 Oetfoh
 Oetfo
 Oetimah
@@ -111140,7 +111140,7 @@ Pancur Telu
 Pancur Tengah
 Pancurusan
 Pandaan
-Pandaän 
+Pandaän
 Pandabar
 Pandadawa
 Pandagan
@@ -118712,7 +118712,7 @@ Pelempayung
 Pelempea
 Pelem
 Pelem
-Pelem 
+Pelem
 Pelem
 Pelem
 Pelem
@@ -132662,7 +132662,7 @@ Roeng
 Roentingkada
 Roe
 Roesak
-Roesép 
+Roesép
 Roesoe
 Roesweri
 Roeta
@@ -162170,7 +162170,7 @@ Tjampor
 Tjampuran
 Tjampurdarat
 Tjampurit
-Tjampurön 
+Tjampurön
 Tjanaran 1
 Tjandana
 Tjandawadak
