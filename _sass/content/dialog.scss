@@ -64,6 +64,14 @@ $dialog-transition-time-out: 0.15s;
         border-radius: $border-radius;
         box-shadow: $shadow-dialog;
 
+        @media screen and (max-width: $page-breakpoint-full) {
+            margin: $padding-medium;
+        }
+
+        @media screen and (max-width: $page-breakpoint-small) {
+            margin: $padding-small;
+        }
+
         .page-header {
             z-index: 2;
 
