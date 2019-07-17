@@ -27,18 +27,18 @@
                 if (dialog.classList.contains("visible")) {
                     dialog.classList.remove("visible");
                     setTimeout(function () {
-                        dialog.style.display = "none";
+                        if (!dialog.classList.contains("visible")) {
+                            dialog.style.visibility = "hidden";
+                        }
                     }, 500);
                 } else {
-                    dialog.style.display = "none";
+                    dialog.style.visibility = "hidden";
                 }
             }
 
             dialog.openDialog = function () {
-                dialog.style.removeProperty("display");
-                setTimeout(function () {
-                    dialog.classList.add("visible");
-                }, 10);
+                dialog.style.visibility = "visible";
+                dialog.classList.add("visible");
             }
 
             // Start closed
