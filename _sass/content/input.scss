@@ -12,6 +12,8 @@ textarea,
 label.button,
 label.checkbox,
 input[type="file"] + label {
+    position: relative;
+
     display: block;
     overflow: hidden;
 
@@ -153,8 +155,6 @@ input[type="file"] + label {
 $checkbox-size: 1.5rem;
 
 label.checkbox {
-    position: relative;
-
     padding-left: calc(#{$checkbox-size} + #{$padding-small});
 
     cursor: pointer;
