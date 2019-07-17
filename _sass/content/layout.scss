@@ -85,6 +85,10 @@ header {
     @media screen and (max-width: $page-breakpoint-horizontal) {
         display: block;
     }
+
+    @media screen and (max-width: $page-breakpoint-small) {
+        padding: $padding-small $padding-medium;
+    }
 }
 
 .page-header {
@@ -93,6 +97,10 @@ header {
     color: $foreground-color;
     background: $accent-gradient;
     background-color: $accent-color;
+
+    @media screen and (max-width: $page-breakpoint-small) {
+        padding: $padding-small $padding-medium;
+    }
 
     a {
         transition: letter-spacing 0.1s ease;

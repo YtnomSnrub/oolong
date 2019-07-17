@@ -9,11 +9,17 @@ layout: default
 <main aria-label="Content" class="page-content-inner">
     <div class="page-content page-content-primary">
         <h2>Data</h2>
+        <p class="text-description">
+            Changing any data options, or the data source, will require the data to be updated again for the changes to take effect.
+        </p>
 
         <div class="flex-vertical flex-container">
             <label for="InputLoadOrder" class="heading-description">Order</label>
             <div class="flex-horizontal">
-                <input type="number" name="loadorder" min="1" placeholder="Order" value="5" id="InputLoadOrder">
+                <label class="button button-small input-number-subtract input-connect-right" for="InputLoadOrder">-</label>
+                <input type="text" name="loadorder" min="1" placeholder="Order" value="5" id="InputLoadOrder"
+                    class="flex-fill input-connect-left input-connect-noborder-left input-connect-right  input-connect-noborder-right">
+                <label class="button button-small input-number-add input-connect-left" for="InputLoadOrder">+</label>
             </div>
 
             <div class="flex-padding-small"></div>
@@ -24,7 +30,11 @@ layout: default
             </p>
         </div>
 
-        <h3 class="text-ruled"><span>Source</span></h3>
+        <div class="flex-vertical flex-container">
+            <label for="InputLoadOrder" class="heading-description">Data Type</label>
+        </div>
+
+        <h3 class="text-ruled">Source</h3>
 
         <div class="flex-vertical flex-container">
             <label class="heading-description">Preset</label>
@@ -33,7 +43,7 @@ layout: default
             </div>
         </div>
 
-        <div class="text-ruled text-ruled-divider"><span>or</span></div>
+        <div class="text-ruled text-ruled-divider">or</div>
 
         <div class="flex-vertical flex-container">
             <label for="InputUploadFileText" class="heading-description">File</label>
@@ -41,7 +51,7 @@ layout: default
                 <input type="text" name="loadfiletext" placeholder="Choose a File" disabled="disabled" class="input-connect-right input-connect-noborder-right"
                     id="InputUploadFileText">
                 <input type="file" name="loadfile" id="InputUploadFile">
-                <label class="button input-connect-left" for="InputUploadFile">Load File</label>
+                <label class="button button-small input-connect-left" for="InputUploadFile">Load File</label>
             </div>
 
             <div class="flex-padding-small"></div>
@@ -50,7 +60,7 @@ layout: default
             </div>
         </div>
 
-        <div class="text-ruled text-ruled-divider"><span>or</span></div>
+        <div class="text-ruled text-ruled-divider">or</div>
 
         <div class="flex-vertical flex-container">
             <label for="InputUploadText" class="heading-description">Text</label>

@@ -131,16 +131,46 @@ p {
 }
 
 .text-ruled {
-    position: relative;
+    display: flex;
 
     width: 100%;
-    margin: $padding-small 0;
 
     text-align: center;
 
-    border-bottom: $border-width solid $accent-color;
+    align-items: center;
+    justify-content: center;
 
-    line-height: 0;
+    &::before,
+    &::after {
+        position: relative;
+
+        margin: 0 $padding-small 0 0;
+
+        content: "";
+
+        border-bottom: $border-width solid;
+
+        flex: 1 0 $padding-small;
+    }
+
+    &::after {
+        margin: 0 0 0 $padding-small;
+    }
+
+    &.text-ruled-divider {
+        text-transform: lowercase;
+
+        color: $text-color-detail;
+
+        font-style: italic;
+
+        &::before,
+        &::after {
+            top: 0.02rem;
+
+            border-color: $border-color;
+        }
+    }
 
     h1,
     h2,
@@ -151,27 +181,6 @@ p {
     p,
     a {
         margin: 0;
-    }
-
-    span {
-        position: relative;
-
-        padding: 0 $padding-small;
-
-        background-color: $foreground-color;
-    }
-
-    &.text-ruled-divider {
-        text-transform: lowercase;
-
-        color: $text-color-detail;
-        border-bottom: $border-width solid $border-color;
-
-        font-style: italic;
-
-        span {
-            top: -0.04rem;
-        }
     }
 }
 

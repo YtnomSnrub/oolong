@@ -27,6 +27,13 @@
     // Setup order options
     let inputOrder = document.getElementById("InputLoadOrder");
     inputOrder.addEventListener("change", function () {
+        // Check validity
+        orderValue = parseInt(inputOrder.value);
+        if (!orderValue || orderValue < 1) {
+            orderValue = 1;
+        }
+
+        inputOrder.value = orderValue;
         // Update status
         setTextContent(textCurrentStatus, "Source data out of date", "text-error");
     })

@@ -6,6 +6,10 @@
 
     list-style: none;
 
+    @media screen and (max-width: $page-breakpoint-full) {
+        min-width: auto;
+    }
+
     .list-select-item,
     .list-select-header {
         padding: $padding-small;

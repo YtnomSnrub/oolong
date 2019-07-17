@@ -2,18 +2,23 @@
     outline: none;
 }
 
+::-moz-focus-inner {
+    border: 0;
+} 
+
 input,
 button,
 textarea,
-input + label,
-label.checkbox {
+label.button,
+label.checkbox,
+input[type="file"] + label {
     display: block;
     overflow: hidden;
 
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    padding: $padding-small;
+    padding: $padding-small $padding-medium;
 
     resize: none;
 
@@ -23,6 +28,9 @@ label.checkbox {
     background-color: $foreground-color;
 
     font-size: 0.9rem;
+
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    user-select: none;
 
     &.input-connect-top {
         border-top-left-radius: 0;
@@ -67,7 +75,7 @@ textarea {
 
     border: $border-width solid $border-color;
 
-    flex: 3;
+    flex: 1;
 
     &:focus {
         border-color: $accent-color;
@@ -96,13 +104,15 @@ input[type="checkbox"] {
 }
 
 button:focus,
-input:focus + label.button {
+label.button:focus,
+input[type="file"]:focus + label.button {
     color: $accent-color;
     background-color: $accent-color-focus;
 }
 
 button,
-input + label.button {
+label.button,
+input[type="file"] + label {
     cursor: pointer;
     transition: background-color 0.1s ease, color 0.1s ease, opacity 0.1s ease;
     text-align: center;
@@ -114,6 +124,12 @@ input + label.button {
     background-color: $foreground-color;
 
     flex: 1;
+
+    &.button-small {
+        width: auto;
+
+        flex: none;
+    }
 
     &:hover {
         color: $foreground-color;

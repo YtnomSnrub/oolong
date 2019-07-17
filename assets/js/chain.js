@@ -8,7 +8,7 @@ const chain = {
      */
     createChainSet: function (order) {
         // Check order
-        if (!typeof order === "number" || order < 1) {
+        if (typeof order !== "number" || isNaN(order) || order < 1) {
             throw new Error("order must be an integer greater than zero");
         }
 

@@ -67,7 +67,8 @@ $dialog-transition-time-out: 0.15s;
         .page-header {
             z-index: 2;
 
-            padding: $padding-small $padding-large;
+            padding-top: $padding-small;
+            padding-bottom: $padding-small;
 
             box-shadow: $shadow-header;
         }
@@ -80,6 +81,10 @@ $dialog-transition-time-out: 0.15s;
             padding: $padding-medium $padding-large;
 
             background-color: $foreground-color;
+
+            @media screen and (max-width: $page-breakpoint-small) {
+                padding: $padding-small $padding-medium;
+            }
         }
 
         .dialog-content-footer {
