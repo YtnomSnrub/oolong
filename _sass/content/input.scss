@@ -20,7 +20,7 @@ input[type="file"] + label {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    padding: $padding-small $padding-medium;
+    padding: $padding-small;
 
     resize: none;
 
@@ -129,6 +129,7 @@ input[type="file"] + label {
 
     &.button-small {
         width: auto;
+        padding: $padding-small $padding-medium;
 
         flex: none;
     }

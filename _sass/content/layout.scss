@@ -34,6 +34,8 @@
 body {
     position: relative;
 
+    overflow-x: hidden;
+
     margin: 0;
     padding: 0 $padding-medium;
 
@@ -162,6 +164,11 @@ header {
 
     height: 100%;
     max-height: calc(100vh - #{2 * $padding-medium});
+
+    @media screen and (max-width: $page-breakpoint-horizontal) {
+        height: auto;
+        max-height: none;
+    }
 }
 
 .page-content-scrollable {
@@ -200,6 +207,7 @@ table {
 
     border: none;
     border-collapse: collapse;
+    background-color: $foreground-color;
 
     thead {
         display: table-header-group;
