@@ -1,15 +1,18 @@
 {%- capture dialog_content -%}
 <div class="dialog-content-inner">
-    <h3 class="text-ruled">Cities</h3>
+    {%- assign preset_types = "Cities,Names" | split: "," -%}
+    {%- for preset_type in preset_types -%}
+    <h3 class="text-ruled">{{ preset_type }}</h3>
     <ul class="list-select">
         <li class="list-select-header flex-horizontal">
             <span class="flex-fill">Name</span>
             <span>Lines</span>
         </li>
-        {%- assign presets_type = site.static_files | where: "preset_cities", true -%}
-        {%- for file in presets_type -%}
+        {%- assign preset_value = "preset_" | append: preset_type | downcase -%}
+        {%- assign preset_files = site.static_files | where: preset_value, true -%}
+        {%- for file in preset_files -%}
         {%- assign file_name = file.basename | split: ";" -%}
-        <li data-preset-file-path="{{ site.baseurl }}{{ file.path }}" data-preset-file-name="{{ file_name[0] }}" data-preset-type="Cities"
+        <li data-preset-file-path="{{ site.baseurl }}{{ file.path }}" data-preset-file-name="{{ file_name[0] }}" data-preset-type="{{ preset_type }}"
             class="list-select-item preset-select-item flex-horizontal" tabindex="0">
             <span class="flex-fill">{{ file_name[0] }}</span>
             {%- if file_name.size > 1 -%}
@@ -18,6 +21,7 @@
         </li>
         {%- endfor -%}
     </ul>
+    {%- endfor -%}
 </div>
 
 <script>
