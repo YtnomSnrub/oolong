@@ -138,14 +138,12 @@ input[type="file"] + label {
     &.button-icon {
         display: flex;
 
-        padding: 0 $padding-small;
-
         i {
-            width: 24px;
-            height: 24px;
+            width: 1rem;
+            height: 1rem;
             margin: auto;
 
-            font-size: 24px;
+            font-size: 1rem;
         }
     }
 
@@ -294,14 +292,14 @@ label.radio {
     .radio-inner {
         position: relative;
 
-        width: $checkbox-size;
-        height: $checkbox-size;
+        width: $checkbox-size + ($border-width * 2);
+        height: $checkbox-size + ($border-width * 2);
 
-        transition: border-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease;
 
-        border: $border-width solid $foreground-color;
+        border: none;
         border-radius: $checkbox-size;
-        background-color: $accent-color;
+        background-color: $foreground-color;
 
         &::before {
             position: absolute;
@@ -313,7 +311,24 @@ label.radio {
             margin: auto;
 
             content: "";
-            transition: transform 0.1s ease-in-out;
+            transition: background-color 0.1s ease;
+
+            border: none;
+            border-radius: $checkbox-size;
+            background-color: $accent-color;
+        }
+
+        &::after {
+            position: absolute;
+            left: $border-width * 2;
+            right: $border-width * 2;
+            top: $border-width * 2;
+            bottom: $border-width * 2;
+
+            margin: auto;
+
+            content: "";
+            transition: transform 0.1s ease-in-out, background-color 0.1s ease;
             transform: scale(1);
 
             border: none;
@@ -325,7 +340,13 @@ label.radio {
     &:hover,
     &:focus {
         .radio-inner {
-            border-color: $accent-color;
+            background-color: $accent-color;
+        }
+    }
+
+    &:active {
+        .radio-inner {
+            background-color: $foreground-color;
         }
     }
 
@@ -339,7 +360,7 @@ label.radio {
     input[type="radio"] {
         &:checked {
             & + .radio-inner {
-                &::before {
+                &::after {
                     transform: scale(0.5);
                 }
             }
@@ -347,7 +368,7 @@ label.radio {
 
         &:focus {
             & + .radio-inner {
-                border-color: $accent-color;
+                background-color: $accent-color;
             }
 
             & + .radio-inner + span {
