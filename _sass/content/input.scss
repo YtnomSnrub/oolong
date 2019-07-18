@@ -135,6 +135,20 @@ input[type="file"] + label {
         flex: none;
     }
 
+    &.button-icon {
+        display: flex;
+
+        padding: 0 $padding-small;
+
+        i {
+            width: 24px;
+            height: 24px;
+            margin: auto;
+
+            font-size: 24px;
+        }
+    }
+
     &:hover {
         color: $foreground-color;
         background-color: $accent-color-hover;

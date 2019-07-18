@@ -1,6 +1,9 @@
+$accordion-expand-size: 24px;
+
 .accordion-heading {
     width: 100%;
     padding: $padding-small $padding-large;
+    padding-right: $padding-large + $accordion-expand-size;
 
     cursor: pointer;
     text-align: left;
@@ -16,13 +19,24 @@
         padding: $padding-small $padding-medium;
     }
 
-    &::after {
-        display: block;
-        float: right;
+    i {
+        position: absolute;
+        right: $padding-large;
+        top: 0;
+        bottom: 0;
 
-        margin-left: $padding-small;
+        width: $accordion-expand-size;
+        height: $accordion-expand-size;
+        margin: auto;
 
-        content: "+";
+        transition: transform 0.2s ease-in-out;
+        transform: rotateX(0deg);
+
+        font-size: $accordion-expand-size;
+    }
+
+    &.accordion-expanded i {
+        transform: rotateX(180deg);
     }
 }
 
@@ -32,7 +46,7 @@
     max-height: 0;
     padding: 0 $padding-large;
 
-    transition: max-height 0s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 
     border-bottom: $border-width solid $border-color;
 

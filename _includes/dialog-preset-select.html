@@ -2,12 +2,11 @@
 <div class="dialog-content-inner dialog-content-fill">
     {%- assign preset_types = "Cities,Names" | split: "," -%}
     {%- for preset_type in preset_types -%}
-    <button class="accordion-heading">{{ preset_type }}</button>
+    {%- include elements/accordion.html title=preset_type -%}
     <div class="accordion-panel">
-        <h3 class="text-ruled">{{ preset_type }}</h3>
         <ul class="list-select">
             <li class="list-select-header flex-horizontal">
-                <span class="flex-fill">Name</span>
+                <span class="flex-fill">Preset Name</span>
                 <span>Lines</span>
             </li>
             {%- assign preset_value = "preset_" | append: preset_type | downcase -%}
