@@ -1,0 +1,46 @@
+.accordion-heading {
+    width: 100%;
+    padding: $padding-small $padding-large;
+
+    cursor: pointer;
+    text-align: left;
+
+    color: $accent-color;
+    border: none;
+    border-radius: 0;
+    background-color: $foreground-color;
+
+    font-weight: 700;
+
+    @media screen and (max-width: $page-breakpoint-small) {
+        padding: $padding-small $padding-medium;
+    }
+
+    &::after {
+        display: block;
+        float: right;
+
+        margin-left: $padding-small;
+
+        content: "+";
+    }
+}
+
+.accordion-panel {
+    overflow: hidden;
+
+    max-height: 0;
+    padding: 0 $padding-large;
+
+    transition: max-height 0s ease-in-out;
+
+    border-bottom: $border-width solid $border-color;
+
+    @media screen and (max-width: $page-breakpoint-small) {
+        padding: 0 $padding-medium;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}

@@ -283,7 +283,9 @@ label.radio {
         width: $checkbox-size;
         height: $checkbox-size;
 
-        border: none;
+        transition: border-color 0.1s ease-in-out;
+
+        border: $border-width solid $foreground-color;
         border-radius: $checkbox-size;
         background-color: $accent-color;
 
@@ -306,9 +308,10 @@ label.radio {
         }
     }
 
-    &:hover {
-        .radio-inner::before {
-            transform: scale(0.8);
+    &:hover,
+    &:focus {
+        .radio-inner {
+            border-color: $accent-color;
         }
     }
 
@@ -316,12 +319,6 @@ label.radio {
     &:active {
         .radio-inner + span {
             color: $accent-color;
-        }
-    }
-
-    &:active {
-        .radio-inner::before {
-            transform: scale(1);
         }
     }
 
@@ -335,6 +332,10 @@ label.radio {
         }
 
         &:focus {
+            & + .radio-inner {
+                border-color: $accent-color;
+            }
+
             & + .radio-inner + span {
                 color: $accent-color;
             }

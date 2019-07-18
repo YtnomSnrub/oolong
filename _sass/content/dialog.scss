@@ -95,6 +95,10 @@ $dialog-transition-time-out: 0.15s;
             }
         }
 
+        .dialog-content-fill {
+            padding: 0;
+        }
+
         .dialog-content-footer {
             z-index: 1;
 
