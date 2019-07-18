@@ -6,6 +6,12 @@ A random word builder using markov chains.
 
 Due to size limitations the raw data files aren't on GitHub, but can be downloaded from their sources below.
 
+### Names
+
+<https://www.ssa.gov/oact/babynames/limits.html>
+
+Location: `assets/data/raw/names/yob####.txt`
+
 ### Cities
 
 <https://www.kaggle.com/max-mind/world-cities-database/>

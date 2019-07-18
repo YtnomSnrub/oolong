@@ -9,3 +9,4 @@ _site
 
 # Data
 assets/data/raw/**/*.csv
+assets/data/raw/**/*.txt

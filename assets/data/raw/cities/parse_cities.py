@@ -58,7 +58,6 @@ for country_code in country_cities:
 
     if country is not None:
         # Write the cities as lines to a new file
-        country_name = country.name.split(",")[0]
         file_name = country.name + ";" + str(city_count) + ".txt"
         file_path = os.path.join(OUTPUT_DIR, file_name)
         with open(file_path, "w", encoding="utf-8") as cities:
