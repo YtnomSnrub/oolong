@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
-    {%- include head.html -%}
+{%- include head.html -%}
 
-    <body>
-        <script>
+<body>
+    <script>
         document.createElement('header');
         document.createElement('section');
         document.createElement('main');
@@ -13,28 +13,44 @@
         document.createElement('nav');
         document.createElement('footer');
     </script>
-        <div class="flex-center">
-            <div class="page" id="PageWrapper">
-                <header aria-label="Header" class="page-header">
-                    <a href="/oolong/">
-                        <h1>Oolong</h1>
-                    </a>
-                </header>
+    <div class="flex-center">
+        <div class="page" id="PageWrapper">
+            <header aria-label="Header" class="page-header">
+                <a href="/oolong/">
+                    <h1>Oolong</h1>
+                </a>
+            </header>
 
-                {{ content }}
-            </div>
+            {{ content }}
         </div>
+    </div>
 
-        <div aria-label="Content" id="PageError" style="display: none; padding: 24px;">
+    <div aria-label="Content" id="PageError" style="display: none; padding: 24px;">
+        <h1>Oolong</h1>
+        <h2>Browser not Supported</h2>
+        <p>Your browser is not supported, please update to a newer browser to continue.</p>
+    </div>
+
+    <noscript>
+        <style>
+.page {
+    display: none;
+}
+
+
+        </style>
+
+        <div aria-label="Content" id="PageError" style="padding: 24px;">
             <h1>Oolong</h1>
-            <h2>Browser not Supported</h2>
-            <p>Your browser is not supported, please update to a newer browser to continue.</p>
+            <h2>JavaScript not Enabled</h2>
+            <p>Please enable JavaScript in your browser to use Oolong.</p>
         </div>
+    </noscript>
 
-        <script src="{{ '/assets/js/inputNumber.js' | relative_url }}"></script>
-        <script src="{{ '/assets/js/inputAccordion.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/inputNumber.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/inputAccordion.js' | relative_url }}"></script>
 
-        <script>
+    <script>
         try {
             // Check browser support
             eval("let x = 0;");
@@ -48,6 +64,6 @@
             pageError.style.display = "block";
         }
     </script>
-    </body>
+</body>
 
 </html>
