@@ -1,5 +1,10 @@
 const chainBaker = {
-    createBakedChain: function (content, options) {
+    createBakedChain: function (content, options, progressCallback) {
+        // Set initial progress
+        if (progressCallback) {
+            progressCallback(0);
+        }
+
         // Create chain
         let chainSet = chain.createChainSet(options.order);
         // Add words to chain
@@ -25,6 +30,8 @@ const chainBaker = {
 
         let sourceContent = {};
         // Iterate through content words
+        let progressValue = 0;
+        let progressTotal = symbols.length;
         symbols.forEach(function (word) {
             // Add word to chain
             chainSet.addSymbols(word);
@@ -34,12 +41,22 @@ const chainBaker = {
             } else {
                 sourceContent[word] = true;
             }
+
+            // Call progress callback
+            progressValue += 1;
+            if (progressCallback) {
+                progressCallback((progressValue / progressTotal) * 0.5);
+            }
         });
 
         // Bake the chain
         return {
             sourceContent: sourceContent,
-            bakedChain: chainSet.bakeChain()
+            bakedChain: chainSet.bakeChain(function (progress) {
+                if (progressCallback) {
+                    progressCallback((progress * 0.5) + 0.5);
+                }
+            })
         };
     }
 };

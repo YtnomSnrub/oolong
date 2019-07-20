@@ -3,8 +3,23 @@ importScripts("chainBaker.js");
 
 onmessage = function (e) {
     try {
-        let chainData = chainBaker.createBakedChain(e.data.input, e.data.options);
+        let pastProgress = null;
+        let chainData = chainBaker.createBakedChain(e.data.input, e.data.options, function (progress) {
+            let sendProgress = progress.toFixed(2);
+            // Check progress
+            if (sendProgress !== pastProgress) {
+                pastProgress = sendProgress;
+                // Send message
+                this.postMessage({
+                    messageType: "progress",
+                    progress: sendProgress
+                });
+            }
+        });
+
+        // Post finished message
         this.postMessage({
+            messageType: "finished",
             bakedChainData: chainData.bakedChain.data,
             sourceContent: chainData.sourceContent
         });

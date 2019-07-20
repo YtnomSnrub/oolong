@@ -38,9 +38,16 @@ const chain = {
                 }
             },
 
-            bakeChain: function () {
+            bakeChain: function (progressCallback) {
+                // Set initial progress
+                if (progressCallback) {
+                    progressCallback(0);
+                }
+
                 let p = {};
                 // Create probabilities
+                let progressValue = 0;
+                let progressTotal = this.chains.length;
                 this.chains.forEach(function (chain) {
                     let key = chain.slice(0, -1);
                     let value = chain.slice(-1);
@@ -56,6 +63,12 @@ const chain = {
 
                     // Increment value
                     p[key][value] += 1;
+
+                    // Call progress callback
+                    progressValue += 1;
+                    if (progressCallback) {
+                        progressCallback(progressValue / progressTotal);
+                    }
                 });
 
                 return chain.loadBakedChain({ p: p, order: order });

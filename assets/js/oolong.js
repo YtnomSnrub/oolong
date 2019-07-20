@@ -72,6 +72,7 @@
     // Setup loading dialog
     let dialogLoadChain = document.getElementById("DialogLoadChain");
     let dialogLoadChainFilename = document.getElementById("DialogLoadChainFilename");
+    let dialogLoadChainProgress = document.getElementById("DialogLoadChainProgress");
     // Setup chain baking
     let sourceContent = {};
     function updateBakedChain(content, dataSource, dataValue) {
@@ -84,26 +85,40 @@
                 // Open dialog
                 dialogLoadChain.openDialog();
                 dialogLoadChainFilename.innerHTML = dataValue;
+                dialogLoadChainProgress.style.transform = "scaleX(" + 0 + ")";
 
                 // Setup worker
                 let chainBakerWorker = new Worker("assets/js/workerChainBaker.js");
                 // Update data when the worker responds
                 chainBakerWorker.onmessage = function (e) {
+                    let shouldTerminate = false;
                     if (e.data) {
-                        bakedChain = chain.loadBakedChain(e.data.bakedChainData);
-                        sourceContent = e.data.sourceContent;
-                        // Set current data
-                        setTextContent(textCurrentData, dataSource + ": " + dataValue);
-                        setTextContent(textCurrentStatus, "Source data up to date", "text-success");
+                        if (e.data.messageType === "progress") {
+                            dialogLoadChainProgress.style.transform = "scaleX(" + e.data.progress + ")";
+                        } else if (e.data.messageType === "finished") {
+                            bakedChain = chain.loadBakedChain(e.data.bakedChainData);
+                            sourceContent = e.data.sourceContent;
+                            shouldTerminate = true;
+                            // Set current data
+                            setTextContent(textCurrentData, dataSource + ": " + dataValue);
+                            setTextContent(textCurrentStatus, "Source data up to date", "text-success");
+                        } else {
+                            // Set error data
+                            setTextContent(textCurrentStatus, "Error reading source data message", "text-error");
+                            shouldTerminate = true;
+                        }
                     } else {
                         // Set error data
                         setTextContent(textCurrentStatus, "Error updating source data", "text-error");
+                        shouldTerminate = true;
                     }
 
-                    // No longer need worker
-                    chainBakerWorker.terminate();
-                    // Close dialog
-                    setTimeout(dialogLoadChain.closeDialog, 200);
+                    if (shouldTerminate) {
+                        // No longer need worker
+                        chainBakerWorker.terminate();
+                        // Close dialog
+                        setTimeout(dialogLoadChain.closeDialog, 200);
+                    }
                 };
 
                 // Send message to worker
@@ -163,7 +178,8 @@
             // Open dialog
             dialogLoadChain.openDialog();
             dialogLoadChainFilename.innerHTML = dataValue;
-
+            dialogLoadChainProgress.style.transform = "scaleX(" + 0 + ")";
+            // Make file request
             fileRequest.send();
         });
     }
@@ -223,7 +239,7 @@
             // Open dialog
             dialogLoadChain.openDialog();
             dialogLoadChainFilename.innerHTML = file.name;
-
+            dialogLoadChainProgress.style.transform = "scaleX(" + 0 + ")";
             // Read file as text
             reader.readAsText(file);
         } else {

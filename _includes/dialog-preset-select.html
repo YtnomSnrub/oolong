@@ -14,7 +14,7 @@
             {%- for file in preset_files -%}
             {%- assign file_name = file.basename | split: ";" -%}
             <li data-preset-file-path="{{ site.baseurl }}{{ file.path }}" data-preset-file-name="{{ file_name[0] }}" data-preset-type="{{ preset_type }}"
-                class="list-select-item preset-select-item flex-horizontal" tabindex="0">
+                class="list-select-item preset-select-item flex-horizontal">
                 <span class="flex-fill">{{ file_name[0] }}</span>
                 {%- if file_name.size > 1 -%}
                 <span class="item-detail preset-item-lines" data-lines="{{ file_name[1] }}"></span>
