@@ -1,6 +1,6 @@
 {%- capture dialog_content -%}
 <div class="dialog-content-inner dialog-content-fill">
-    {%- assign preset_types = "Cities,Names" | split: "," -%}
+    {%- assign preset_types = "Cities,Names,Words" | split: "," -%}
     {%- for preset_type in preset_types -%}
     {%- include elements/accordion.html title=preset_type -%}
     <div class="accordion-panel">

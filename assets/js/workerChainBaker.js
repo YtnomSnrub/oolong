@@ -5,7 +5,7 @@ onmessage = function (e) {
     try {
         let pastProgress = null;
         let chainData = chainBaker.createBakedChain(e.data.input, e.data.options, function (progress) {
-            let sendProgress = progress.toFixed(2);
+            let sendProgress = progress.toFixed(3);
             // Check progress
             if (sendProgress !== pastProgress) {
                 pastProgress = sendProgress;
