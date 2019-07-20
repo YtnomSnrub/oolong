@@ -20,6 +20,19 @@
 
     <script src="{{ '/assets/js/inputNumber.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/inputAccordion.js' | relative_url }}"></script>
+
+    <script>
+        // Hack so that back button works properly in some browsers
+        window.addEventListener("pageshow", function (event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    </script>
 </body>
 
 </html>
