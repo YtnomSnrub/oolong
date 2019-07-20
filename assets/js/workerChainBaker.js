@@ -5,10 +5,7 @@ onmessage = function (e) {
     try {
         let chainData = chainBaker.createBakedChain(e.data.input, e.data.options);
         this.postMessage({
-            bakedChain: {
-                p: chainData.bakedChain.p,
-                order: chainData.bakedChain.order
-            },
+            bakedChainData: chainData.bakedChain.data,
             sourceContent: chainData.sourceContent
         });
     } catch (ex) {

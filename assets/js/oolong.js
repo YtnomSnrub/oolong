@@ -90,7 +90,7 @@
                 // Update data when the worker responds
                 chainBakerWorker.onmessage = function (e) {
                     if (e.data) {
-                        bakedChain = chain.loadBakedChain(e.data.bakedChain);
+                        bakedChain = chain.loadBakedChain(e.data.bakedChainData);
                         sourceContent = e.data.sourceContent;
                         // Set current data
                         setTextContent(textCurrentData, dataSource + ": " + dataValue);
@@ -108,10 +108,8 @@
 
                 // Send message to worker
                 setTimeout(function () {
-                    chainBakerWorker.postMessage({
-                        input: content,
-                        options: getChainOptions()
-                    });
+                    let messageObject = { input: content, options: getChainOptions() };
+                    chainBakerWorker.postMessage(messageObject);
                 }, 200);
             } else {
                 let chainData = chainBaker.createBakedChain(content, getChainOptions());
@@ -272,12 +270,6 @@
             // Generate a new chain
             if (window.Worker) {
                 let chainGeneratorWorker = new Worker("assets/js/workerChainGenerator.js");
-                chainGeneratorWorker.postMessage({
-                    bakedChain: { p: bakedChain.p, order: bakedChain.order },
-                    sourceContent: sourceContent,
-                    options: getChainOptions()
-                });
-
                 // Updated data when the worker responds
                 chainGeneratorWorker.onmessage = function (e) {
                     if (e.data !== null) {
@@ -295,6 +287,17 @@
                     // No longer need worker
                     chainGeneratorWorker.terminate();
                 };
+
+                // Send message to worker
+                setTimeout(function () {
+                    let messageObject = {
+                        bakedChain: bakedChain.data,
+                        sourceContent: sourceContent,
+                        options: getChainOptions()
+                    };
+
+                    chainGeneratorWorker.postMessage(messageObject);
+                }, 200);
             } else {
                 let newContent = chainGenerator.generateNewChain(bakedChain, sourceContent, options);
                 if (newContent !== null) {

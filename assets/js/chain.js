@@ -69,8 +69,10 @@ const chain = {
         }
 
         return {
-            p: bakedChain.p,
-            order: bakedChain.order,
+            data: {
+                p: bakedChain.p,
+                order: bakedChain.order,
+            },
 
             /**
              * Get a key of length order, given an array of symbols
@@ -80,7 +82,7 @@ const chain = {
                 let orderKey = symbols.slice();
                 // Pad start with start symbols
                 if (padStart) {
-                    while (orderKey.length < this.order) {
+                    while (orderKey.length < this.data.order) {
                         orderKey.splice(0, 0, SYMBOL_START);
                     }
                 } else if (orderKey.length === 0) {
@@ -88,7 +90,7 @@ const chain = {
                 }
 
                 // Trim key down to order length
-                while (orderKey.length > this.order) {
+                while (orderKey.length > this.data.order) {
                     orderKey = orderKey.slice(1);
                 }
 
@@ -100,7 +102,7 @@ const chain = {
              * @param {[]} symbols
              */
             generateNextSymbol: function (symbols) {
-                let p = this.p;
+                let p = this.data.p;
                 let key = this.getKeyForSymbols(symbols, true);
                 // Check p for key
                 if (p[key] === undefined) {
@@ -136,7 +138,7 @@ const chain = {
              */
             getPossibilitiesForSymbols: function (symbols) {
                 let orderKey = this.getKeyForSymbols(symbols, true);
-                return this.p[orderKey];
+                return this.data.p[orderKey];
             },
 
             generateNewChain: function () {
@@ -150,7 +152,7 @@ const chain = {
                     // Add the value to the key
                     key.push(value);
                     // Trim the key if it is longer than the order
-                    while (key.length > this.order) {
+                    while (key.length > this.data.order) {
                         key = key.slice(1);
                     }
 

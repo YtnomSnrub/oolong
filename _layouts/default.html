@@ -4,17 +4,8 @@
 {%- include head.html -%}
 
 <body>
-    <script>
-        document.createElement('header');
-        document.createElement('section');
-        document.createElement('main');
-        document.createElement('article');
-        document.createElement('aside');
-        document.createElement('nav');
-        document.createElement('footer');
-    </script>
-    <div class="flex-center">
-        <div class="page" id="PageWrapper">
+    <div class="main flex-center" id="PageWrapper">
+        <div class="page">
             <header aria-label="Header" class="page-header">
                 <a href="/oolong/">
                     <h1>Oolong</h1>
@@ -25,45 +16,10 @@
         </div>
     </div>
 
-    <div aria-label="Content" id="PageError" style="display: none; padding: 24px;">
-        <h1>Oolong</h1>
-        <h2>Browser not Supported</h2>
-        <p>Your browser is not supported, please update to a newer browser to continue.</p>
-    </div>
-
-    <noscript>
-        <style>
-.page {
-    display: none;
-}
-
-
-        </style>
-
-        <div aria-label="Content" id="PageError" style="padding: 24px;">
-            <h1>Oolong</h1>
-            <h2>JavaScript not Enabled</h2>
-            <p>Please enable JavaScript in your browser to use Oolong.</p>
-        </div>
-    </noscript>
+    {%- include _meta/browser-check.html -%}
 
     <script src="{{ '/assets/js/inputNumber.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/inputAccordion.js' | relative_url }}"></script>
-
-    <script>
-        try {
-            // Check browser support
-            eval("let x = 0;");
-            eval("const X = 0;");
-        } catch (ex) {
-            // Hide other content
-            var pageWrapper = document.getElementById("PageWrapper");
-            pageWrapper.style.display = "none";
-            // Show error content
-            var pageError = document.getElementById("PageError");
-            pageError.style.display = "block";
-        }
-    </script>
 </body>
 
 </html>
