@@ -4,7 +4,7 @@ A random word builder using markov chains.
 
 ## Data Sources
 
-Due to size limitations the raw data files aren't on GitHub, but can be downloaded from their sources below.
+Due to size limitations the raw data files aren't on GitHub, but can be downloaded from their sources below. All source files should be saved with UTF-8 for parsing files with characters outside of the English alphabet.
 
 ### Names
 
@@ -20,6 +20,6 @@ Location: `assets/data/raw/cities/worldcitiespop.csv`
 
 ### Words
 
-- English: <https://github.com/dwyl/english-words/blob/master/words_alpha.txt>
+- English: <http://www.gwicks.net/dictionaries.htm>
 
-Location: `assets/data/raw/words/words_[lang].csv`
+Location: `assets/data/raw/words/[lang].txt`

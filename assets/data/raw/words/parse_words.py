@@ -30,14 +30,14 @@ for file in os.listdir(OUTPUT_DIR):
 language_words = defaultdict(lambda: {})
 for file in Bar("Reading data files").iter(os.listdir("./")):
     # Skip non data files
-    if not file.startswith("words_"):
+    if not file.endswith(".txt"):
         continue
 
     # Find the language
-    language = file.strip("words_.txt")
+    language = file.strip(".txt")
     # Open the file
     with open(file, newline="", encoding="utf-8") as words:
-        # Iterate through words, adding to words dictionary
+        # Parse each word and add to language
         for word_raw in words:
             # Strip and capitalise word
             word = ""
@@ -48,7 +48,8 @@ for file in Bar("Reading data files").iter(os.listdir("./")):
                 word += word_stripped[1:]
 
             # Add word to language
-            language_words[language][word] = True
+            if word != "":
+                language_words[language][word] = True
 
 
 # Create files for names
