@@ -21,6 +21,8 @@ encoding: utf-8
 
 # Build settings
 markdown: kramdown
+# Google Analytics
+google_analytics: UA-105356258-6
 
 defaults:
   - scope:
@@ -39,3 +41,5 @@ defaults:
       path: "assets/data/presets/words"
     values:
       preset_words: true
+
+github: [metadata]
