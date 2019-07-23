@@ -3,6 +3,7 @@ import shutil
 
 import csv
 import pycountry
+from progress.bar import Bar
 
 from collections import defaultdict
 
@@ -41,10 +42,9 @@ with open("worldcitiespop.csv", newline="", encoding="utf-8") as cities:
             country_cities[country].append(city_name)
 
 
-print("Writing city files")
 # Create files for cities
 CITIES_MIN = 1000
-for country_code in country_cities:
+for country_code in Bar("Writing city files").iter(country_cities):
     # Check that there are enough cities
     city_count = len(country_cities[country_code])
     if city_count < CITIES_MIN:
@@ -57,8 +57,13 @@ for country_code in country_cities:
         country = pycountry.historic_countries.get(alpha_2=country_code)
 
     if country is not None:
+        # Choose name for country
+        country_name = country.name
+        if hasattr(country, "common_name"):
+            country_name = country.common_name
+
+        file_name = country_name + ";" + str(city_count) + ".txt"
         # Write the cities as lines to a new file
-        file_name = country.name + ";" + str(city_count) + ".txt"
         file_path = os.path.join(OUTPUT_DIR, file_name)
         with open(file_path, "w", encoding="utf-8") as cities:
             cities.write("\n".join(country_cities[country_code]))
