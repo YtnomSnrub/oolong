@@ -20,7 +20,7 @@ $loading-chain-dash-length: 60px;
 
     50% {
         transform: translate3d(-50%, -50%, 0) scale(1);
-        animation-timing-function: ease-in;
+        animation-timing-function: $m-ease-in;
     }
 
     60% {
@@ -35,7 +35,7 @@ $loading-chain-dash-length: 60px;
 @keyframes loading-chain-node-2 {
     0% {
         transform: translate3d(-50%, -50%, 0) scale(0);
-        animation-timing-function: ease-out;
+        animation-timing-function: $m-ease-out;
     }
 
     10% {
@@ -44,7 +44,7 @@ $loading-chain-dash-length: 60px;
 
     75% {
         transform: translate3d(-50%, -50%, 0) scale(1);
-        animation-timing-function: ease-in;
+        animation-timing-function: $m-ease-in;
     }
 
     85% {
@@ -61,7 +61,7 @@ $loading-chain-dash-length: 60px;
         left: 100%;
 
         transform: translate3d(-50%, -50%, 0) scale(0);
-        animation-timing-function: ease-out;
+        animation-timing-function: $m-ease-out;
     }
 
     10% {
@@ -76,7 +76,7 @@ $loading-chain-dash-length: 60px;
         left: 100%;
 
         transform: translate3d(-50%, -50%, 0) scale(1);
-        animation-timing-function: ease-in-out;
+        animation-timing-function: $m-ease;
     }
 
     100% {
@@ -88,7 +88,7 @@ $loading-chain-dash-length: 60px;
 
 @keyframes loading-chain-link {
     0% {
-        animation-timing-function: ease-in-out;
+        animation-timing-function: $m-ease;
 
         opacity: 0;
 
@@ -104,7 +104,7 @@ $loading-chain-dash-length: 60px;
     }
 
     50% {
-        animation-timing-function: ease-in-out;
+        animation-timing-function: $m-ease;
 
         opacity: 1;
 

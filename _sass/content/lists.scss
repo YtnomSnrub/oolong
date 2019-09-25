@@ -26,7 +26,7 @@
         position: relative;
 
         cursor: pointer;
-        transition: color 0.1s ease;
+        transition: color 0.1s $m-ease;
 
         color: $text-color;
         background-color: transparent;
@@ -42,7 +42,7 @@
             overflow: hidden;
 
             content: "";
-            transition: background-color 0.1s ease;
+            transition: background-color 0.1s $m-ease;
 
             background-color: transparent;
         }
@@ -75,7 +75,7 @@
         .item-detail {
             padding-left: $padding-medium;
 
-            transition: opacity 0.1s ease;
+            transition: opacity 0.1s $m-ease;
             text-align: right;
 
             opacity: 0.5;

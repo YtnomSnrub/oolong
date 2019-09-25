@@ -1,7 +1,7 @@
 $dialog-z-index: 100;
 $dialog-color-background: rgba(0, 0, 0, 0.5);
-$dialog-transition-time-in: 0.25s;
-$dialog-transition-time-out: 0.15s;
+$dialog-transition-time-in: 0.2s;
+$dialog-transition-time-out: 0.125s;
 
 .dialog {
     position: fixed;
@@ -20,13 +20,13 @@ $dialog-transition-time-out: 0.15s;
 
     &.visible {
         .dialog-background {
-            transition: opacity $dialog-transition-time-in * 2 ease;
+            transition: opacity $dialog-transition-time-in * 2 $m-ease;
 
             opacity: 1;
         }
 
         .dialog-content {
-            transition: opacity $dialog-transition-time-in ease-out, transform $dialog-transition-time-in ease-out;
+            transition: opacity $dialog-transition-time-in $m-ease-out, transform $dialog-transition-time-in $m-ease-out;
             transform: none;
 
             opacity: 1;
@@ -41,7 +41,7 @@ $dialog-transition-time-out: 0.15s;
         top: 0;
         bottom: 0;
 
-        transition: opacity $dialog-transition-time-out * 2 ease;
+        transition: opacity $dialog-transition-time-out * 2 $m-ease;
 
         opacity: 0;
         background: $dialog-color-background;
@@ -56,8 +56,8 @@ $dialog-transition-time-out: 0.15s;
         max-width: 100%;
         margin: $padding-large;
 
-        transition: opacity $dialog-transition-time-out ease-in, transform $dialog-transition-time-out ease-in;
-        transform: scale(0.8);
+        transition: opacity $dialog-transition-time-out $m-ease-in, transform $dialog-transition-time-out $m-ease-in;
+        transform: scale(0.75);
 
         opacity: 0;
         border: none;

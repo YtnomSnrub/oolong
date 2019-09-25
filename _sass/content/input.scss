@@ -73,7 +73,7 @@ input[type="file"] + label {
 
 input,
 textarea {
-    transition: border-color 0.1s ease, color 0.1s ease;
+    transition: border-color 0.1s$m-ease, color 0.1s$m-ease;
 
     border: $border-width solid $border-color;
 
@@ -117,7 +117,7 @@ button,
 label.button,
 input[type="file"] + label {
     cursor: pointer;
-    transition: background-color 0.1s ease, color 0.1s ease, opacity 0.1s ease;
+    transition: background-color 0.1s$m-ease, color 0.1s$m-ease, opacity 0.1s$m-ease;
     text-align: center;
     letter-spacing: 0.02rem;
     text-transform: uppercase;
@@ -185,14 +185,14 @@ label.checkbox {
         height: $checkbox-size;
         margin: auto;
 
-        transition: background-color 0.1s ease;
+        transition: background-color 0.1s$m-ease;
 
         border: $border-width solid $accent-color;
         border-radius: $border-radius;
         background-color: $foreground-color;
 
         polyline {
-            transition: stroke-dashoffset 0.12s ease-in-out, stroke 0.02s ease-in-out 0.1s;
+            transition: stroke-dashoffset 0.12s $m-ease, stroke 0.02s $m-ease 0.1s;
 
             fill: none;
             stroke: transparent;
@@ -228,7 +228,7 @@ label.checkbox {
         &:checked {
             & + svg {
                 polyline {
-                    transition: stroke-dashoffset 0.12s ease-in-out, stroke 0.02s ease-in-out;
+                    transition: stroke-dashoffset 0.12s $m-ease, stroke 0.02s $m-ease;
 
                     stroke: $accent-color;
                     stroke-dashoffset: 0;
@@ -284,7 +284,7 @@ label.radio {
     span {
         padding-left: $padding-small;
 
-        transition: color 0.1s ease-in-out;
+        transition: color 0.1s $m-ease;
 
         color: $text-color;
     }
@@ -295,7 +295,7 @@ label.radio {
         width: $checkbox-size + ($border-width * 2);
         height: $checkbox-size + ($border-width * 2);
 
-        transition: background-color 0.1s ease;
+        transition: background-color 0.1s$m-ease;
 
         border: none;
         border-radius: $checkbox-size;
@@ -311,7 +311,7 @@ label.radio {
             margin: auto;
 
             content: "";
-            transition: background-color 0.1s ease;
+            transition: background-color 0.1s$m-ease;
 
             border: none;
             border-radius: $checkbox-size;
@@ -328,7 +328,7 @@ label.radio {
             margin: auto;
 
             content: "";
-            transition: transform 0.1s ease-in-out, background-color 0.1s ease;
+            transition: transform 0.1s $m-ease, background-color 0.1s$m-ease;
             transform: scale(1);
 
             border: none;

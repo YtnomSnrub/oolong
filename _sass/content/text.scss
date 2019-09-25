@@ -121,7 +121,7 @@ p {
 }
 
 .text-transition {
-    transition: color 0.1s ease, opacity 0.1s ease;
+    transition: color 0.1s $m-ease, opacity 0.1s $m-ease;
 
     opacity: 1;
 
@@ -185,14 +185,14 @@ p {
 }
 
 .text-generated-word {
-    transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+    transition: opacity 0.1s $m-ease-out, transform 0.1s $m-ease-out;
 
     opacity: 1;
 
     font-size: 1.4rem;
 
     &.hidden {
-        transition: opacity 0.1s ease-in, transform 0.1s ease-in;
+        transition: opacity 0.1s $m-ease-in, transform 0.1s $m-ease-in;
         transform: translateY(0.4rem);
 
         opacity: 0;

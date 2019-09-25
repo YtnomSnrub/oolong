@@ -105,7 +105,7 @@ header {
     }
 
     a {
-        transition: letter-spacing 0.1s ease;
+        transition: letter-spacing 0.1s$m-ease;
         letter-spacing: 0;
 
         color: $foreground-color;
@@ -130,7 +130,7 @@ header {
 .page-content-secondary {
     max-width: 16rem;
 
-    transition: max-width 0.4s ease-in-out, border-left 0.4s ease-in-out, opacity 0.1s ease-in-out 0.25s;
+    transition: max-width 0.4s $m-ease, border-left 0.4s $m-ease, opacity 0.1s $m-ease 0.25s;
     white-space: nowrap;
 
     opacity: 1;
@@ -151,7 +151,7 @@ header {
     &.hidden {
         max-width: 0;
 
-        transition: max-width 0.4s ease-in-out, border-left 0.4s ease-in-out, opacity 0.1s ease-in-out;
+        transition: max-width 0.4s $m-ease, border-left 0.4s $m-ease, opacity 0.1s $m-ease;
 
         opacity: 0;
         border-left-width: 0;
