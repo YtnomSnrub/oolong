@@ -1,6 +1,10 @@
 {
     "name": "Oolong",
     "short_name": "Oolong",
+    "description": "Oolong is a random word generator",
+    "orientation": "any",
+    "start_url": "https://ytnomsnrub.github.io/oolong/",
+    "scope": "https://ytnomsnrub.github.io/oolong/",
     "icons": [
         {
             "src": "/favicon/android-chrome-192x192.png",
