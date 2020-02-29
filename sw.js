@@ -6,7 +6,7 @@ var preLoad = function () {
     console.log("Installing web app");
     return caches.open("offline").then(function (cache) {
         console.log("Caching index and important routes");
-        return cache.addAll(["/oolong/"]);
+        return cache.addAll(OolongResources);
     }).catch(function (err) {
         console.error(err);
     });
@@ -28,7 +28,9 @@ var checkResponse = function (request) {
             } else {
                 reject();
             }
-        }, reject);
+        }, reject).catch(function (err) {
+            console.error(err);
+        });
     });
 };
 

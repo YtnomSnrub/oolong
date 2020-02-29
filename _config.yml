@@ -26,9 +26,18 @@ google_analytics: UA-105356258-6
 
 defaults:
   - scope:
+      path: "assets/favicon"
+    values:
+      resource: true
+  - scope:
+      path: "assets/js"
+    values:
+      resource: true
+  - scope:
       path: "assets/data/presets"
     values:
       preset: true
+      resource: true
   - scope:
       path: "assets/data/presets/cities"
     values:

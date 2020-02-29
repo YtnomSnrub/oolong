@@ -31,6 +31,19 @@
         }
     </script>
 
+    {%- assign resources = "" | split: "" -%}
+    {%- assign resource_files = site.static_files | where: "resource", true -%}
+    {%- for file in resource_files -%}
+    {%- assign resource_name = '"' | append: file.path | append: '"' | split: "\n" -%}
+    {%- assign resources = resources | concat: resource_name -%}
+    {%- endfor -%}
+
+    <script type="">
+        OolongResources = [
+            {{ resources | join: ", " }}
+        ];
+    </script>
+
     <script>
         if (!navigator.serviceWorker.controller) {
             navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}").then(function (reg) {
