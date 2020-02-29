@@ -38,8 +38,8 @@
     {%- assign resources = resources | concat: resource_name -%}
     {%- endfor -%}
 
-    <script type="">
-        OolongResources = [
+    <script>
+        const OolongResources = [
             {{ resources | join: ", " }}
         ];
     </script>
