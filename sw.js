@@ -1,56 +1,44 @@
-self.addEventListener("install", function (event) {
-    event.waitUntil(preLoad());
-});
+const CACHE_NAME = "oolong_cache_v1"
 
-var preLoad = function () {
-    console.log("Installing web app");
-    return caches.open("offline").then(function (cache) {
-        console.log("Caching index and important routes");
-        return cache.addAll(OolongResources);
-    }).catch(function (err) {
-        console.error(err);
-    });
-};
+const urlsToCache = [
+    "./",
+    "./index.html",
+    "./site.webmanifest",
+    "./assets/main.css"
+]
 
-self.addEventListener("fetch", function (event) {
-    event.respondWith(checkResponse(event.request).catch(function () {
-        return returnFromCache(event.request);
-    }));
-
-    event.waitUntil(addToCache(event.request));
-});
-
-var checkResponse = function (request) {
-    return new Promise(function (fulfill, reject) {
-        fetch(request).then(function (response) {
-            if (response.status !== 404) {
-                fulfill(response);
-            } else {
-                reject();
-            }
-        }, reject).catch(function (err) {
+self.addEventListener('install', function (event) {
+    // Perform install steps
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(function (cache) {
+            // Read resources
+            importScripts("./assets/js/swResources.js");
+            return cache.addAll(urlsToCache.concat(OolongResources));
+        }).catch(function (err) {
             console.error(err);
-        });
-    });
-};
+        })
+    );
+});
 
-var addToCache = function (request) {
-    return caches.open("offline").then(function (cache) {
-        return fetch(request).then(function (response) {
-            console.log(response.url + " was cached");
-            return cache.put(request, response);
-        });
-    });
-};
+self.addEventListener('fetch', function (event) {
+    event.respondWith(
+        fetch(event.request).catch(function () {
+            return caches.match(event.request);
+        })
+    );
+});
 
-var returnFromCache = function (request) {
-    return caches.open("offline").then(function (cache) {
-        return cache.match(request).then(function (matching) {
-            if (!matching || matching.status == 404) {
-                return cache.match("index.html");
-            } else {
-                return matching;
-            }
-        });
-    });
-};
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.filter(function (cacheName) {
+                    return cacheName != CACHE_NAME
+                }).map(function (cacheName) {
+                    console.log("Cleaned cache: " + cacheName);
+                    return caches.delete(cacheName);
+                })
+            );
+        })
+    );
+});

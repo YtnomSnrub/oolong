@@ -31,23 +31,17 @@
         }
     </script>
 
-    {%- assign resources = "" | split: "" -%}
-    {%- assign resource_files = site.static_files | where: "resource", true -%}
-    {%- for file in resource_files -%}
-    {%- assign resource_name = '"' | append: file.path | append: '"' | split: "\n" -%}
-    {%- assign resources = resources | concat: resource_name -%}
-    {%- endfor -%}
-
     <script>
-        const OolongResources = [
-            {{ resources | join: ", " }}
-        ];
-    </script>
-
-    <script>
-        if (!navigator.serviceWorker.controller) {
-            navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}").then(function (reg) {
-                console.log("Service worker has been registered for scope: " + reg.scope);
+        // Add service worker
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}").then(function (registration) {
+                    // Registration was successful
+                    console.log("ServiceWorker registration successful with scope: ", registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log("ServiceWorker registration failed: ", err);
+                });
             });
         }
     </script>
